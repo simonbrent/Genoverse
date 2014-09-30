@@ -43,15 +43,29 @@ Genoverse.Track.Configurable = Genoverse.Track.extend({
   },
 
   setLengthMap: function () {
-    var args           = [ true, {} ];
+    var config         = [ true, {} ];
     var featureFilters = [];
-    var settings;
+    var lengthMap      = { 1: {} };
+    var mv             = {};
+    var settings, key, i;
 
-    for (var i in this.configSettings) {
-      settings = this.getConfig(i);
+    for (i in this.configSettings) {
+      settings = $.extend(true, {}, this.getConfig(i));
 
       if (settings) {
-        args.push(settings);
+        for (key in settings) { // Find all scale-map like keys
+          if (!isNaN(key)) {
+            //this[key] = $.extend(true, {}, settings, settings[key]);
+            lengthMap[key] = $.extend(lengthMap[key] || {}, settings[key]);
+            delete settings[key];
+          }
+
+          if (/^(model|view)$/.test(key)) {
+            mv[key] = settings[key];
+          }
+        }
+
+        config.push(settings);
 
         if (settings.featureFilter) {
           featureFilters.push(settings.featureFilter);
@@ -59,7 +73,12 @@ Genoverse.Track.Configurable = Genoverse.Track.extend({
       }
     }
 
-    this.extend({ 1: $.extend.apply($, args.concat({ featureFilters: featureFilters })) });
+    config = $.extend.apply($, config.concat({ featureFilters: featureFilters }, mv));
+
+    for (i in lengthMap) {
+      this[i] = $.extend({}, config, lengthMap[i]);
+    }
+
     this.base();
   },
 
