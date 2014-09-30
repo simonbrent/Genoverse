@@ -55,7 +55,6 @@ Genoverse.Track.Configurable = Genoverse.Track.extend({
       if (settings) {
         for (key in settings) { // Find all scale-map like keys
           if (!isNaN(key)) {
-            //this[key] = $.extend(true, {}, settings, settings[key]);
             lengthMap[key] = $.extend(lengthMap[key] || {}, settings[key]);
             delete settings[key];
           }
