@@ -18,7 +18,7 @@ Genoverse.Track = Base.extend({
     this.setDefaults();
     this.setEvents();
 
-    Genoverse.wrapFunctions(this);
+    Genoverse.addEvents(this);
 
     this.setLengthMap();
     this.setMVC();

@@ -22,13 +22,24 @@
     <script type="text/javascript" src="js/lib/rtree.js"></script>
 
     <script type="text/javascript" src="js/Genoverse.js"></script>
+    <script type="text/javascript" src="js/core/config.js"></script>
+    <script type="text/javascript" src="js/core/events.js"></script>
+    <script type="text/javascript" src="js/core/location.js"></script>
+    <script type="text/javascript" src="js/core/interactions.js"></script>
+    <script type="text/javascript" src="js/core/menus.js"></script>
+    <script type="text/javascript" src="js/core/tracks.js"></script>
+    <script type="text/javascript" src="js/core/url.js"></script>
+
+
+
+
     <script type="text/javascript" src="js/Track.js"></script>
 
     <script type="text/javascript" src="js/Track/Controller.js"></script>
     <script type="text/javascript" src="js/Track/Model.js"></script>
     <script type="text/javascript" src="js/Track/View.js"></script>
 
-    <script type="text/javascript" src="js/Track/library/Static.js"></script>
+   <!-- <script type="text/javascript" src="js/Track/library/Static.js"></script>
     <script type="text/javascript" src="js/Track/library/Configurable.js"></script>
 
     <script type="text/javascript" src="js/Track/Controller/Stranded.js"></script>
@@ -67,9 +78,11 @@
     <script type="text/javascript" src="js/Track/library/File/VCF.js"></script>
     <script type="text/javascript" src="js/Track/library/Gene.js"></script>
     <script type="text/javascript" src="js/Track/library/Legend.js"></script>
-    <script type="text/javascript" src="js/Track/library/Scaleline.js"></script>
+    <script type="text/javascript" src="js/Track/library/Scaleline.js"></script>-->
     <script type="text/javascript" src="js/Track/library/Scalebar.js"></script>
 
+
+    <script type="text/javascript" src="js/Track/library/Chromosome.js"></script>
 
     <script>
       var genoverseConfig = {
@@ -79,10 +92,10 @@
         chr       : 13,
         start     : 32889611,
         end       : 32973805,
-        plugins   : [ 'controlPanel', 'karyotype', 'trackControls', 'resizer', 'tooltips', 'fileDrop' ],
+       // plugins   : [ 'controlPanel', 'karyotype', 'trackControls', 'resizer', 'tooltips', 'fileDrop' ],
         tracks    : [
           Genoverse.Track.Scalebar,
-          Genoverse.Track.extend({
+         /* Genoverse.Track.extend({
             name         : 'Sequence',
             controller   : Genoverse.Track.Controller.Sequence,
             model        : Genoverse.Track.Model.Sequence.Ensembl,
@@ -90,7 +103,7 @@
             resizable    : 'auto',
             100000       : false
           }),
-          Genoverse.Track.Gene,
+          Genoverse.Track.Gene,*/
           Genoverse.Track.extend({
             name            : 'Regulatory Features',
             url             : 'http://rest.ensembl.org/overlap/region/human/__CHR__:__START__-__END__?feature=regulatory;content-type=application/json',
