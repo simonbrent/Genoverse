@@ -31,10 +31,7 @@ Genoverse.Track = Base.extend({
     this.setProperties();
     this.setEvents();
 
-    //Genoverse.wrapFunctions(this);
-
-    //this.setLengthMap();
-    //this.setMVC();
+    Genoverse.wrapFunctions(this);
   },
   
   setInterface: function () {
@@ -48,7 +45,6 @@ Genoverse.Track = Base.extend({
 
     for (var i = 0; i < 3; i++) {
       for (prop in Genoverse.Track[mvc[i]].prototype) {
-        //if (!/^(constructor|init|setDefaults|extend|base)$/.test(prop)) {
         if (typeof proto[prop] === 'undefined') {
           this._interface[prop] = mvc[i + 3];
           
@@ -81,7 +77,6 @@ Genoverse.Track = Base.extend({
     var def = {};
     var value;
 
-    //this.properties = $.extend(this.properties || {}, this._properties || {});
     this.lengthMap  = [];
     this.models     = {};
     this.views      = {};
@@ -316,8 +311,3 @@ Genoverse.Track = Base.extend({
     }
   }
 });
-/*
-Genoverse.Track.extend = function (properties) {
-  properties = { _properties: properties };
-  return Base.extend.apply(this, arguments);
-};*/

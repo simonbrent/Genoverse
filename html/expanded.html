@@ -31,20 +31,17 @@
     <script type="text/javascript" src="/js/core/tracks.js"></script>
     <script type="text/javascript" src="/js/core/url.js"></script>
 
-
-
-
     <script type="text/javascript" src="/js/Track.js"></script>
 
     <script type="text/javascript" src="/js/Track/Controller.js"></script>
     <script type="text/javascript" src="/js/Track/Model.js"></script>
     <script type="text/javascript" src="/js/Track/View.js"></script>
 
-   <!-- <script type="text/javascript" src="/js/Track/library/Static.js"></script>
+    <script type="text/javascript" src="/js/Track/library/Static.js"></script>
     <script type="text/javascript" src="/js/Track/library/Configurable.js"></script>
 
     <script type="text/javascript" src="/js/Track/Controller/Stranded.js"></script>
-    <script type="text/javascript" src="/js/Track/Model/Stranded.js"></script>-->
+    <script type="text/javascript" src="/js/Track/Model/Stranded.js"></script>
 
     <script type="text/javascript" src="/js/Track/Controller/Sequence.js"></script>
     <script type="text/javascript" src="/js/Track/Model/Sequence.js"></script>
@@ -53,7 +50,7 @@
     <script type="text/javascript" src="/js/Track/Model/Sequence/DAS.js"></script>
     <script type="text/javascript" src="/js/Track/View/Sequence.js"></script>
 
-    <!--<script type="text/javascript" src="/js/Track/Model/SequenceVariation.js"></script>
+    <script type="text/javascript" src="/js/Track/Model/SequenceVariation.js"></script>
     <script type="text/javascript" src="/js/Track/Model/SequenceVariation/VCF.js"></script>
 
     <script type="text/javascript" src="/js/Track/Model/Gene.js"></script>
@@ -79,11 +76,9 @@
     <script type="text/javascript" src="/js/Track/library/File/VCF.js"></script>
     <script type="text/javascript" src="/js/Track/library/Gene.js"></script>
     <script type="text/javascript" src="/js/Track/library/Legend.js"></script>
-    <script type="text/javascript" src="/js/Track/library/Scaleline.js"></script>-->
+    <script type="text/javascript" src="/js/Track/library/Scaleline.js"></script>
     <script type="text/javascript" src="/js/Track/library/Scalebar.js"></script>
-
-
-    <!--<script type="text/javascript" src="/js/Track/library/Chromosome.js"></script>-->
+    <script type="text/javascript" src="/js/Track/library/Chromosome.js"></script>
 
     <script>
       var genoverseConfig = {
@@ -93,30 +88,28 @@
         chr       : 13,
         start     : 32889611,
         end       : 32973805,
-       // plugins   : [ 'controlPanel', 'karyotype', 'trackControls', 'resizer', 'tooltips', 'fileDrop' ],
+        plugins   : [ 'controlPanel', 'karyotype', 'trackControls', 'resizer', 'tooltips', 'fileDrop' ],
         tracks    : [
           Genoverse.Track.Scalebar,
-          /*Genoverse.Track.extend({
+          Genoverse.Track.extend({
             name       : 'Sequence',
             controller : Genoverse.Track.Controller.Sequence,
             model      : Genoverse.Track.Model.Sequence.Ensembl,
             view       : Genoverse.Track.View.Sequence,
             resizable  : 'auto',
             100000     : false
-          }),*/
-         // Genoverse.Track.Gene,
-         /* Genoverse.Track.extend({
+          }),
+          Genoverse.Track.Gene,
+          Genoverse.Track.extend({
             name            : 'Regulatory Features',
             url             : 'http://rest.ensembl.org/overlap/region/human/__CHR__:__START__-__END__?feature=regulatory;content-type=application/json',
             resizable       : 'auto',
             model           : Genoverse.Track.Model.extend({ dataRequestLimit : 5000000 }),
             setFeatureColor : function (f) { f.color = '#AAA'; }
-          })*/
+          })
         ]
-      }
+      };
 
-      
-      
       $(document).ready(function () { window.genoverse = new Genoverse(genoverseConfig); });
     </script>
   </body>
