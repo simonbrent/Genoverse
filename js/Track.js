@@ -61,7 +61,7 @@ Genoverse.Track = Base.extend({
   },
   
   setDefaults: function () {
-    this.order             = typeof this.order !== 'undefined' ? this.order : this.index;
+    this.order             = this.strand === -1 && this.orderReverse ? this.orderReverse : typeof this.order !== 'undefined' ? this.order : this.index;
     this.defaultHeight     = this.height;
     this.defaultAutoHeight = this.autoHeight;
     this.autoHeight        = typeof this.autoHeight !== 'undefined' ? this.autoHeight : this.browser.trackAutoHeight;

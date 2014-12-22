@@ -90,7 +90,7 @@
         end       : 32973805,
         plugins   : [ 'controlPanel', 'karyotype', 'trackControls', 'resizer', 'tooltips', 'fileDrop' ],
         tracks    : [
-          Genoverse.Track.Scalebar,
+          Genoverse.Track.Scalebar.extend({ controller: Genoverse.Track.Controller.Stranded }),
           Genoverse.Track.extend({
             name       : 'Sequence',
             controller : Genoverse.Track.Controller.Sequence,

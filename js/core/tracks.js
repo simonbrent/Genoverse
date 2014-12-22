@@ -42,8 +42,6 @@ Genoverse.core.tracks = {
 
       tracks[i] = new tracks[i]($.extend(defaults, { index: i + index }));
       
-      //tracks[i]();
-
       if (tracks[i].id) {
         this.tracksById[tracks[i].id] = tracks[i];
       }
@@ -51,17 +49,17 @@ Genoverse.core.tracks = {
       if (push) {
         this.tracks.push(tracks[i]);
 
-       /* if (this.scale) {
+        if (this.scale) {
           tracks[i].controller.setScale(); // scale will only be set for tracks added after initalisation
           tracks[i].controller.makeFirstImage();
-        }*/
+        }
       } else {
         this.tracks[i] = tracks[i];
       }
     }
 
-    /*this.sortTracks();
-    this.saveConfig();*/
+    this.sortTracks();
+    this.saveConfig();
 
     return tracks;
   },
