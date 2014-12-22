@@ -9,7 +9,7 @@ Genoverse.Track.Controller = Base.extend({
 
   constructor: function (properties) {
     $.extend(this, properties);
-    Genoverse.addEvents(this);
+    Genoverse.wrapFunctions(this);
     this.init();
   },
 
@@ -277,7 +277,7 @@ Genoverse.Track.Controller = Base.extend({
 
     this.scale = this.browser.scale;
 
-    this.track.setMVC();
+    this.track.setMV();
     this.resetImageRanges();
 
     var labels = this.prop('labels');

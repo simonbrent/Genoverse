@@ -6,8 +6,8 @@ Genoverse.Track = Base.extend({
   unsortable : false,     // Is the track unsortable
   name       : undefined, // The name of the track, which appears in its label
   autoHeight : undefined, // Does the track automatically resize so that all the features are visible
-
-  constructor: function (config) {
+  
+ /* constructor: function (config) {
     if (this.stranded || config.stranded) {
       this.controller = this.controller || Genoverse.Track.Controller.Stranded;
       this.model      = this.model      || Genoverse.Track.Model.Stranded;
@@ -18,14 +18,52 @@ Genoverse.Track = Base.extend({
     this.setDefaults();
     this.setEvents();
 
-    Genoverse.addEvents(this);
+    Genoverse.wrapFunctions(this);
 
     this.setLengthMap();
     this.setMVC();
+  },*/
+
+  constructor: function (config) {
+    this.setInterface();
+    this.extend(config);
+    this.setDefaults();
+    this.setProperties();
+    this.setEvents();
+
+    //Genoverse.wrapFunctions(this);
+
+    //this.setLengthMap();
+    //this.setMVC();
   },
+  
+  setInterface: function () {
+    var mvc   = [ 'Controller', 'Model', 'View', 'controller', 'model', 'view' ];
+    var proto = Genoverse.Track.prototype;
+    var prop;
 
-  setEvents: $.noop,
+    this._functions  = { controller: {}, model: {}, view: {} };
+    this._properties = { controller: {}, model: {}, view: {} };
+    this._interface  = {};
 
+    for (var i = 0; i < 3; i++) {
+      for (prop in Genoverse.Track[mvc[i]].prototype) {
+        //if (!/^(constructor|init|setDefaults|extend|base)$/.test(prop)) {
+        if (typeof proto[prop] === 'undefined') {
+          this._interface[prop] = mvc[i + 3];
+          
+          if (this[prop]) {
+            this[typeof this[prop] === 'function' ? '_functions' : '_properties'][this._interface[prop]][prop] = this[prop];
+          }
+        }
+      }
+    }
+    
+    for (i in this._functions) {
+      this._functions[i].prop = $.proxy(this.prop, this);
+    }
+  },
+  
   setDefaults: function () {
     this.order             = typeof this.order !== 'undefined' ? this.order : this.index;
     this.defaultHeight     = this.height;
@@ -39,21 +77,51 @@ Genoverse.Track = Base.extend({
     }
   },
 
-  setInterface: function () {
-    var mvc = [ 'Controller', 'Model', 'View', 'controller', 'model', 'view' ];
-    var prop;
+  setProperties: function () {
+    var def = {};
+    var value;
 
-    this._interface = {};
+    //this.properties = $.extend(this.properties || {}, this._properties || {});
+    this.lengthMap  = [];
+    this.models     = {};
+    this.views      = {};
 
-    for (var i = 0; i < 3; i++) {
-      for (prop in Genoverse.Track[mvc[i]].prototype) {
-        if (!/^(constructor|init)$/.test(prop)) {
-          this._interface[prop] = mvc[i + 3];
-        }
+    for (var key in this) { // Find all scale-map like keys
+      if (/^(model|view|controller)$/.test(key)) {
+        def[key] = this[key];
+        delete this[key];
+      } else if (!isNaN(key)) {
+        key   = parseInt(key, 10);
+        value = this[key];
+        delete this[key];
+        
+        this.lengthMap.push([ key, value === false ? { threshold: key, resizable: 'auto', featureHeight: 0 } : value ]);
       }
     }
-  },
 
+    this.controller = this.newMVC('Controller', def.controller);
+    
+    delete def.controller;
+    
+    this.lengthMap.push([ -1, def ]);
+    
+    this.lengthMap = this.lengthMap.sort(function (a, b) { return b[0] - a[0]; });
+
+    for (var i = 0; i < this.lengthMap.length; i++) {
+      this.models[this.lengthMap[i][0]] = this.newMVC('Model', this.lengthMap[i][1].model);
+      this.views[this.lengthMap[i][0]]  = this.newMVC('View',  this.lengthMap[i][1].view);
+    }
+  },
+  
+  setEvents: $.noop,
+  
+  setMV: function () {
+    var lengthSettings = this.getSettingsForLength();
+    
+    this.model = this.controller.model = this.models[lengthSettings[0]];
+    this.view  = this.controller.view  = this.views[lengthSettings[0]];
+  },
+  /*
   setMVC: function () {
     // FIXME: if you zoom out quickly then hit the back button, the second zoom level (first one you zoomed out to) will not draw if the models/views are the same
     if (this.model && typeof this.model.abort === 'function') { // TODO: don't abort unless model is changed?
@@ -132,72 +200,16 @@ Genoverse.Track = Base.extend({
       this.views[lengthSettings[0]]  = this.view;
     }
   },
-
-  newMVC: function (object, functions, properties) {
-    return new (object.extend(
-      $.extend(true, {}, object.prototype, functions, {
-        prop: $.proxy(this.prop, this)
-      })
-    ))(
-      $.extend(properties, {
-        browser : this.browser,
-        width   : this.width,
-        index   : this.index,
-        track   : this
-      })
-    );
-  },
-
-  setLengthMap: function () {
-    var value, j, deepCopy;
-
-    this.lengthMap = [];
-    this.models    = {};
-    this.views     = {};
-
-    for (var key in this) { // Find all scale-map like keys
-      if (!isNaN(key)) {
-        key   = parseInt(key, 10);
-        value = this[key];
-        delete this[key];
-        this.lengthMap.push([ key, value === false ? { threshold: key, resizable: 'auto', featureHeight: 0, model: Genoverse.Track.Model, view: Genoverse.Track.View } : value ]);
-      }
-    }
-
-    if (this.lengthMap.length) {
-      this.lengthMap.push([ -1, $.extend(true, {}, this, { view: this.view || Genoverse.Track.View, model: this.model || Genoverse.Track.Model }) ]);
-      this.lengthMap = this.lengthMap.sort(function (a, b) { return b[0] - a[0]; });
-    }
-
-    for (var i = 0; i < this.lengthMap.length; i++) {
-      if (this.lengthMap[i][1].model && this.lengthMap[i][1].view) {
-        continue;
-      }
-
-      deepCopy = {};
-
-      if (this.lengthMap[i][0] !== -1) {
-        for (j in this.lengthMap[i][1]) {
-          if (this._interface[j]) {
-            deepCopy[this._interface[j]] = true;
-          }
-        }
-      }
-
-      for (j = i + 1; j < this.lengthMap.length; j++) {
-        if (!this.lengthMap[i][1].model && this.lengthMap[j][1].model) {
-          this.lengthMap[i][1].model = deepCopy.model ? Genoverse.Track.Model.extend($.extend(true, {}, this.lengthMap[j][1].model.prototype)) : this.lengthMap[j][1].model;
-        }
-
-        if (!this.lengthMap[i][1].view && this.lengthMap[j][1].view) {
-          this.lengthMap[i][1].view = deepCopy.view ? Genoverse.Track.View.extend($.extend(true, {}, this.lengthMap[j][1].view.prototype)) : this.lengthMap[j][1].view;
-        }
-
-        if (this.lengthMap[i][1].model && this.lengthMap[i][1].view) {
-          break;
-        }
-      }
-    }
+*/
+  newMVC: function (type, object) {
+    object = (object || Genoverse.Track[type]).extend(this._functions[type.toLowerCase()]);
+    
+    return new object($.extend({
+      browser : this.browser,
+      width   : this.width,
+      index   : this.index,
+      track   : this
+    }, this._properties[type.toLowerCase()]));
   },
 
   getSettingsForLength: function () {
@@ -226,7 +238,6 @@ Genoverse.Track = Base.extend({
 
       obj = obj || this;
     }
-
 
     if (typeof value !== 'undefined') {
       if (value === null) {
@@ -305,3 +316,8 @@ Genoverse.Track = Base.extend({
     }
   }
 });
+/*
+Genoverse.Track.extend = function (properties) {
+  properties = { _properties: properties };
+  return Base.extend.apply(this, arguments);
+};*/

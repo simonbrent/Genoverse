@@ -8,7 +8,7 @@ Genoverse.Track.Model = Base.extend({
 
   constructor: function (properties) {
     $.extend(this, properties);
-    Genoverse.addEvents(this);
+    Genoverse.wrapFunctions(this);
     this.init();
   },
 

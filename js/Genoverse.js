@@ -46,7 +46,7 @@ var Genoverse = Base.extend({
     this.events = { browser: {}, tracks: {} };
 
     $.when(this.loadGenome(), this.loadPlugins()).always(function () {
-      Genoverse.addEvents(browser);
+      Genoverse.wrapFunctions(browser);
       browser.init();
     });
   },
