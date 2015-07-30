@@ -74,8 +74,14 @@ Genoverse.Track = Base.extend({
   },
 
   setProperties: function () {
-    var defaults = {};
-    var value, model, view, j, properties;
+    var defaults   = {};
+    var properties = {}
+    var value, model, view, j;
+
+    if (this.stranded) {
+      this.controller = this.controller || Genoverse.Track.Controller.Stranded;
+      this.model      = this.model      || Genoverse.Track.Model.Stranded;
+    }
 
     this.lengthMap  = [];
     this.models     = {};
@@ -90,11 +96,15 @@ Genoverse.Track = Base.extend({
         value = this[key];
         delete this[key];
 
-        this.lengthMap.push([ key, value === false ? { threshold: key, resizable: 'auto', featureHeight: 0 } : value ]);
+        if (value === false) {
+          properties.threshold = key;
+        } else {
+          this.lengthMap.push([ key, value ]);
+        }
       }
     }
 
-    this.controller = this.newMVC('Controller', defaults.controller);
+    this.controller = this.newMVC('Controller', defaults.controller, properties);
 
     delete defaults.controller;
 
@@ -142,12 +152,25 @@ Genoverse.Track = Base.extend({
 
   setEvents: $.noop,
 
-  setMV: function () {
-    var lengthSettings = this.getSettingsForLength();
+  setLengthProperties: function () {
+    var key = this.getLengthKey();
 
-    this.model = this.controller.model = this.models[lengthSettings[0]];
-    this.view  = this.controller.view  = this.views[lengthSettings[0]];
+    if (key) {
+      this.model = this.controller.model = this.models[key];
+      this.view  = this.controller.view  = this.views[key];
+    }
   },
+
+  getLengthKey: function () {
+    for (var i = 0; i < this.lengthMap.length; i++) {
+      if (this.browser.length > this.lengthMap[i][0] || this.browser.length === 1 && this.lengthMap[i][0] === 1) {
+        return this.lengthMap[i][0];
+      }
+    }
+
+    return false;
+  },
+
   /*
   setMVC: function () {
     // FIXME: if you zoom out quickly then hit the back button, the second zoom level (first one you zoomed out to) will not draw if the models/views are the same
@@ -237,16 +260,6 @@ Genoverse.Track = Base.extend({
       index   : this.index,
       track   : this
     }, this._properties[type.toLowerCase()], properties));
-  },
-
-  getSettingsForLength: function () {
-    for (var i = 0; i < this.lengthMap.length; i++) {
-      if (this.browser.length > this.lengthMap[i][0] || this.browser.length === 1 && this.lengthMap[i][0] === 1) {
-        return this.lengthMap[i];
-      }
-    }
-
-    return [];
   },
 
   prop: function (key, value) {

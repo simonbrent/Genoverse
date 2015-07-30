@@ -1,5 +1,5 @@
 Genoverse.Plugins.resizer = function () {
-  this.on('afterSetMVC', 'tracks', function () {
+  this.on('afterSetLengthProperties', 'tracks', function () {
     if (this.prop('resizable') !== true) {
       return;
     }

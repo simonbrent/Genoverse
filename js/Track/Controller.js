@@ -166,12 +166,19 @@ Genoverse.Track.Controller = Base.extend({
     if (this.browser.length > this.threshold) {
       if (this.thresholdMessage) {
         this.showMessage('threshold', this.thresholdMessage);
-        this.fullVisibleHeight = Math.max(this.messageContainer.outerHeight(true), this.minLabelHeight);
+        this.preThresholdHeight = this.preThresholdHeight || this.prop('height');
+        this.fullVisibleHeight  = Math.max(this.messageContainer.outerHeight(true), this.minLabelHeight);
       } else {
         this.fullVisibleHeight = 0;
       }
     } else if (this.thresholdMessage) {
       this.hideMessage('threshold');
+
+      if (this.preThresholdHeight) {
+        this.resize(this.preThresholdHeight, false);
+        delete this.preThresholdHeight;
+        return;
+      }
     }
 
     if (!this.prop('resizable')) {
@@ -277,7 +284,7 @@ Genoverse.Track.Controller = Base.extend({
 
     this.scale = this.browser.scale;
 
-    this.track.setMV();
+    this.track.setLengthProperties();
     this.resetImageRanges();
 
     var labels = this.prop('labels');
