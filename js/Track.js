@@ -6,25 +6,14 @@ Genoverse.Track = Base.extend({
   unsortable : false,     // Is the track unsortable
   name       : undefined, // The name of the track, which appears in its label
   autoHeight : undefined, // Does the track automatically resize so that all the features are visible
+  hideEmpty  : undefined, // If the track automatically resizes, should it be hidden when there are no features, or should an empty track still be shown
 
- /* constructor: function (config) {
+  constructor: function (config) {
     if (this.stranded || config.stranded) {
       this.controller = this.controller || Genoverse.Track.Controller.Stranded;
       this.model      = this.model      || Genoverse.Track.Model.Stranded;
     }
 
-    this.setInterface();
-    this.extend(config);
-    this.setDefaults();
-    this.setEvents();
-
-    Genoverse.wrapFunctions(this);
-
-    this.setLengthMap();
-    this.setMVC();
-  },*/
-
-  constructor: function (config) {
     this.setInterface();
     this.extend(config);
     this.setDefaults();
@@ -42,6 +31,7 @@ Genoverse.Track = Base.extend({
     this._functions  = { controller: {}, model: {}, view: {} };
     this._properties = { controller: {}, model: {}, view: {} };
     this._interface  = {};
+    this._defaults   = {};
 
     for (var i = 0; i < 3; i++) {
       for (prop in Genoverse.Track[mvc[i]].prototype) {
@@ -65,6 +55,7 @@ Genoverse.Track = Base.extend({
     this.defaultHeight     = this.height;
     this.defaultAutoHeight = this.autoHeight;
     this.autoHeight        = typeof this.autoHeight !== 'undefined' ? this.autoHeight : this.browser.trackAutoHeight;
+    this.hideEmpty         = typeof this.hideEmpty  !== 'undefined' ? this.hideEmpty  : this.browser.hideEmptyTracks;
     this.height           += this.margin;
     this.initialHeight     = this.height;
 
@@ -76,16 +67,11 @@ Genoverse.Track = Base.extend({
   setProperties: function () {
     var defaults   = {};
     var properties = {}
+    var lengthMap  = [];
     var value, model, view, j;
 
-    if (this.stranded) {
-      this.controller = this.controller || Genoverse.Track.Controller.Stranded;
-      this.model      = this.model      || Genoverse.Track.Model.Stranded;
-    }
-
-    this.lengthMap  = [];
-    this.models     = {};
-    this.views      = {};
+    this.models = {};
+    this.views  = {};
 
     for (var key in this) {
       if (/^(model|view|controller)$/.test(key)) {
@@ -99,45 +85,44 @@ Genoverse.Track = Base.extend({
         if (value === false) {
           properties.threshold = key;
         } else {
-          this.lengthMap.push([ key, value ]);
+          lengthMap.push([ key, value ]);
         }
       }
     }
 
-    this.controller = this.newMVC('Controller', defaults.controller, properties);
+    if (this.lengthMap) {
+      lengthMap.push(this.lengthMap[0]); // Add the -1 defaults to the new length map
+    } else {
+      this.controller = this.newMVC('Controller', defaults.controller, properties);
 
-    delete defaults.controller;
+      delete defaults.controller;
 
-    // Ensure that there's always at least one item in the lengthMap array
-    this.lengthMap.push([ -1, defaults ]);
+      // Ensure that there's always at least one item in the lengthMap array
+      lengthMap.push([ -1, defaults ]);
+    }
 
-    this.lengthMap = this.lengthMap.sort(function (a, b) { return b[0] - a[0]; });
+    lengthMap = lengthMap.sort(function (a, b) { return b[0] - a[0]; });
 
-    for (var i = 0; i < this.lengthMap.length; i++) {
-      model      = this.lengthMap[i][1].model;
-      view       = this.lengthMap[i][1].view;
+    for (var i = 0; i < lengthMap.length; i++) {
+      model      = lengthMap[i][1].model;
+      view       = lengthMap[i][1].view;
       properties = {};
 
       // Find properties of the length setting that are related to the view or model, and assign them accordingly so that they are used
-      if (this.lengthMap[i][0] !== -1) {
-        for (j in this.lengthMap[i][1]) {
+      if (lengthMap[i][0] !== -1) {
+        for (j in lengthMap[i][1]) {
           if (this._interface[j]) {
             properties[this._interface[j]]    = properties[this._interface[j]] || {};
-            properties[this._interface[j]][j] = this.lengthMap[i][1][j];
+            properties[this._interface[j]][j] = lengthMap[i][1][j];
           }
         }
       }
 
       // If the length setting is missing a model or view, use the next model or view found by looking at decreasing sizes of length settings
       if (!(model && view)) {
-        for (j = i + 1; j < this.lengthMap.length; j++) {
-          if (!model && this.lengthMap[j][1].model) {
-            model = properties.model ? Genoverse.Track.Model.extend($.extend(true, {}, this.lengthMap[j][1].model.prototype)) : this.lengthMap[j][1].model;
-          }
-
-          if (!view && this.lengthMap[j][1].view) {
-            view = properties.view ? Genoverse.Track.View.extend($.extend(true, {}, this.lengthMap[j][1].view.prototype)) : this.lengthMap[j][1].view;
-          }
+        for (j = i + 1; j < lengthMap.length; j++) {
+          model = model || lengthMap[j][1].model;
+          view  = view  || lengthMap[j][1].view;
 
           if (model && view) {
             break;
@@ -145,112 +130,52 @@ Genoverse.Track = Base.extend({
         }
       }
 
-      this.models[this.lengthMap[i][0]] = this.newMVC('Model', model, properties.model);
-      this.views[this.lengthMap[i][0]]  = this.newMVC('View',  view,  properties.view);
+      // FIXME: Makes new models/views when resetting, even when not necessary
+      this.models[lengthMap[i][0]] = this.newMVC('Model', model, properties.model);
+      this.views[lengthMap[i][0]]  = this.newMVC('View',  view,  properties.view);
     }
+
+    this.lengthMap = lengthMap;
   },
 
   setEvents: $.noop,
 
   setLengthProperties: function () {
-    var key = this.getLengthKey();
+    var settings = this.getSettingsForLength();
+    var i;
 
-    if (key) {
-      this.model = this.controller.model = this.models[key];
-      this.view  = this.controller.view  = this.views[key];
+    if (settings.length) {
+      this.model = this.controller.model = this.models[settings[0]];
+      this.view  = this.controller.view  = this.views[settings[0]];
+
+      for (i in settings[1]) {
+        if (!this._interface[i] && !/^(model|view|controller)$/.test(i)) {
+          if (typeof this._defaults[i] === 'undefined') {
+            this._defaults[i] = this[i];
+          }
+
+          this[i] = settings[1][i];
+        }
+      }
+
+      for (i in this._defaults) {
+        if (typeof settings[1][i] === 'undefined') {
+          this[i] = this._defaults[i];
+        }
+      }
     }
   },
 
-  getLengthKey: function () {
+  getSettingsForLength: function () {
     for (var i = 0; i < this.lengthMap.length; i++) {
       if (this.browser.length > this.lengthMap[i][0] || this.browser.length === 1 && this.lengthMap[i][0] === 1) {
-        return this.lengthMap[i][0];
+        return this.lengthMap[i];
       }
     }
 
-    return false;
+    return [];
   },
 
-  /*
-  setMVC: function () {
-    // FIXME: if you zoom out quickly then hit the back button, the second zoom level (first one you zoomed out to) will not draw if the models/views are the same
-    if (this.model && typeof this.model.abort === 'function') { // TODO: don't abort unless model is changed?
-      this.model.abort();
-    }
-
-    var lengthSettings = this.getSettingsForLength();
-    var settings       = $.extend(true, {}, this.constructor.prototype, lengthSettings[1]); // model, view, options
-    var mvc            = [ 'model', 'view', 'controller' ];
-    var mvcSettings    = {};
-    var trackSettings  = {};
-    var obj, j;
-
-    settings.controller = settings.controller || this.controller || Genoverse.Track.Controller;
-    settings.model      = this.models[lengthSettings[0]] || settings.model || this.model || Genoverse.Track.Model;
-    settings.view       = this.views[lengthSettings[0]]  || settings.view  || this.view  || Genoverse.Track.View;
-
-    for (var i = 0; i < 3; i++) {
-      mvcSettings[mvc[i]] = { prop: {}, func: {} };
-    }
-
-    for (i in settings) {
-      if (!/^(constructor|init|reset|setDefaults|base|extend|lengthMap)$/.test(i) && isNaN(i)) {
-        if (this._interface[i]) {
-          mvcSettings[this._interface[i]][typeof settings[i] === 'function' ? 'func' : 'prop'][i] = settings[i];
-        } else if (!Genoverse.Track.prototype.hasOwnProperty(i) && !/^(controller|model|view)$/.test(i)) {
-          trackSettings[i] = settings[i];
-        }
-      }
-    }
-
-    this.extend(trackSettings);
-
-    for (i = 0; i < 3; i++) {
-      obj = mvc[i];
-
-      if (obj === 'controller') {
-        continue;
-      }
-
-      if (typeof settings[obj] === 'function' && (!this[obj] || this[obj].constructor.ancestor !== settings[obj])) {
-        // Make a new instance of model/view if there isn't one already, or the model/view in lengthSettings is different from the existing model/view
-        this[obj] = this.newMVC(settings[obj], mvcSettings[obj].func, mvcSettings[obj].prop);
-      } else {
-        // Update the model/view with the values in mvcSettings.
-        var test = typeof settings[obj] === 'object' && this[obj] !== settings[obj] ? this[obj] = settings[obj] : this[obj + 's'][lengthSettings[0]] && this.lengthMap.length > 1 ? this[obj + 's'][lengthSettings[0]] : false;
-
-        if (test) {
-          for (j in mvcSettings[obj].prop) {
-            if (typeof test[j] !== 'undefined') {
-              this[obj][j] = mvcSettings[obj].prop[j];
-            }
-          }
-
-          this[obj].constructor.extend(mvcSettings[obj].func);
-
-          if (obj === 'model' && typeof test.url !== 'undefined') {
-            this.model.setURL(); // make sure the URL is correct
-          }
-        }
-      }
-    }
-
-    if (!this.controller || typeof this.controller === 'function') {
-      this.controller = this.newMVC(settings.controller, mvcSettings.controller.func, $.extend(mvcSettings.controller.prop, { model: this.model, view: this.view }));
-    } else {
-      $.extend(this.controller, { model: this.model, view: this.view, threshold: mvcSettings.controller.prop.threshold || this.controller.constructor.prototype.threshold });
-    }
-
-    if (this.strand === -1 && this.orderReverse) {
-      this.order = this.orderReverse;
-    }
-
-    if (lengthSettings[1]) {
-      this.models[lengthSettings[0]] = this.model;
-      this.views[lengthSettings[0]]  = this.view;
-    }
-  },
-*/
   newMVC: function (type, object, properties) {
     object = (object || Genoverse.Track[type]).extend(this._functions[type.toLowerCase()]);
 
@@ -336,8 +261,8 @@ Genoverse.Track = Base.extend({
     }
 
     this.view.init();
-    this.setLengthMap();
-    this.controller.reset();
+    this.setProperties();
+    this.controller.reset.apply(this.controller, arguments);
   },
 
   remove: function () {
