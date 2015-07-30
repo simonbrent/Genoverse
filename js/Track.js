@@ -6,7 +6,7 @@ Genoverse.Track = Base.extend({
   unsortable : false,     // Is the track unsortable
   name       : undefined, // The name of the track, which appears in its label
   autoHeight : undefined, // Does the track automatically resize so that all the features are visible
-  
+
  /* constructor: function (config) {
     if (this.stranded || config.stranded) {
       this.controller = this.controller || Genoverse.Track.Controller.Stranded;
@@ -33,7 +33,7 @@ Genoverse.Track = Base.extend({
 
     Genoverse.wrapFunctions(this);
   },
-  
+
   setInterface: function () {
     var mvc   = [ 'Controller', 'Model', 'View', 'controller', 'model', 'view' ];
     var proto = Genoverse.Track.prototype;
@@ -47,19 +47,19 @@ Genoverse.Track = Base.extend({
       for (prop in Genoverse.Track[mvc[i]].prototype) {
         if (typeof proto[prop] === 'undefined') {
           this._interface[prop] = mvc[i + 3];
-          
+
           if (this[prop]) {
             this[typeof this[prop] === 'function' ? '_functions' : '_properties'][this._interface[prop]][prop] = this[prop];
           }
         }
       }
     }
-    
+
     for (i in this._functions) {
       this._functions[i].prop = $.proxy(this.prop, this);
     }
   },
-  
+
   setDefaults: function () {
     this.order             = this.strand === -1 && this.orderReverse ? this.orderReverse : typeof this.order !== 'undefined' ? this.order : this.index;
     this.defaultHeight     = this.height;
@@ -74,45 +74,77 @@ Genoverse.Track = Base.extend({
   },
 
   setProperties: function () {
-    var def = {};
-    var value;
+    var defaults = {};
+    var value, model, view, j, properties;
 
     this.lengthMap  = [];
     this.models     = {};
     this.views      = {};
 
-    for (var key in this) { // Find all scale-map like keys
+    for (var key in this) {
       if (/^(model|view|controller)$/.test(key)) {
-        def[key] = this[key];
+        defaults[key] = this[key];
         delete this[key];
-      } else if (!isNaN(key)) {
+      } else if (!isNaN(key)) { // Find all scale-map like keys
         key   = parseInt(key, 10);
         value = this[key];
         delete this[key];
-        
+
         this.lengthMap.push([ key, value === false ? { threshold: key, resizable: 'auto', featureHeight: 0 } : value ]);
       }
     }
 
-    this.controller = this.newMVC('Controller', def.controller);
-    
-    delete def.controller;
-    
-    this.lengthMap.push([ -1, def ]);
-    
+    this.controller = this.newMVC('Controller', defaults.controller);
+
+    delete defaults.controller;
+
+    // Ensure that there's always at least one item in the lengthMap array
+    this.lengthMap.push([ -1, defaults ]);
+
     this.lengthMap = this.lengthMap.sort(function (a, b) { return b[0] - a[0]; });
 
     for (var i = 0; i < this.lengthMap.length; i++) {
-      this.models[this.lengthMap[i][0]] = this.newMVC('Model', this.lengthMap[i][1].model);
-      this.views[this.lengthMap[i][0]]  = this.newMVC('View',  this.lengthMap[i][1].view);
+      model      = this.lengthMap[i][1].model;
+      view       = this.lengthMap[i][1].view;
+      properties = {};
+
+      // Find properties of the length setting that are related to the view or model, and assign them accordingly so that they are used
+      if (this.lengthMap[i][0] !== -1) {
+        for (j in this.lengthMap[i][1]) {
+          if (this._interface[j]) {
+            properties[this._interface[j]]    = properties[this._interface[j]] || {};
+            properties[this._interface[j]][j] = this.lengthMap[i][1][j];
+          }
+        }
+      }
+
+      // If the length setting is missing a model or view, use the next model or view found by looking at decreasing sizes of length settings
+      if (!(model && view)) {
+        for (j = i + 1; j < this.lengthMap.length; j++) {
+          if (!model && this.lengthMap[j][1].model) {
+            model = properties.model ? Genoverse.Track.Model.extend($.extend(true, {}, this.lengthMap[j][1].model.prototype)) : this.lengthMap[j][1].model;
+          }
+
+          if (!view && this.lengthMap[j][1].view) {
+            view = properties.view ? Genoverse.Track.View.extend($.extend(true, {}, this.lengthMap[j][1].view.prototype)) : this.lengthMap[j][1].view;
+          }
+
+          if (model && view) {
+            break;
+          }
+        }
+      }
+
+      this.models[this.lengthMap[i][0]] = this.newMVC('Model', model, properties.model);
+      this.views[this.lengthMap[i][0]]  = this.newMVC('View',  view,  properties.view);
     }
   },
-  
+
   setEvents: $.noop,
-  
+
   setMV: function () {
     var lengthSettings = this.getSettingsForLength();
-    
+
     this.model = this.controller.model = this.models[lengthSettings[0]];
     this.view  = this.controller.view  = this.views[lengthSettings[0]];
   },
@@ -196,15 +228,15 @@ Genoverse.Track = Base.extend({
     }
   },
 */
-  newMVC: function (type, object) {
+  newMVC: function (type, object, properties) {
     object = (object || Genoverse.Track[type]).extend(this._functions[type.toLowerCase()]);
-    
+
     return new object($.extend({
       browser : this.browser,
       width   : this.width,
       index   : this.index,
       track   : this
-    }, this._properties[type.toLowerCase()]));
+    }, this._properties[type.toLowerCase()], properties));
   },
 
   getSettingsForLength: function () {
