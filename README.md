@@ -32,13 +32,13 @@ In addition to this, Genoverse has a set of plugins, which allow additional func
     if you already have them in the page
 
 3. Add a script tag or JavaScript file which initializes Genoverse, e.g.
-	```html
-	<script>
-		$(document).ready(function () {
-			var genoverse = new Genoverse({ ... configuration ... });
-		});
-	</script>
-	```
+  ```html
+  <script>
+    $(document).ready(function () {
+      var genoverse = new Genoverse({ ... configuration ... });
+    });
+  </script>
+  ```
 
 ## Configuration
 
@@ -46,8 +46,8 @@ Genoverse has a large number of configurable properties, in order to allow custo
 
 ```js
 var genoverse = new Genoverse({ 
-	genome: 'grch38', 
-	tracks: [ Genoverse.Track.Scalebar, Genoverse.Track.Gene ] 
+  genome: 'grch38', 
+  tracks: [ Genoverse.Track.Scalebar, Genoverse.Track.Gene ] 
 });
 ```
 
@@ -76,13 +76,14 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 #### genome (default `undefined`)
 > The genome to be used. Can be:
 >
->	- an object with keys of the number/letter/name of the chromosomes, and values in the form `{ "size": 10000 }`. 
->	Additionally an array of bands can be supplied for each chromosome for drawing purposes - see [js/genomes/grch38.js](https://github.com/wtsi-web/Genoverse/blob/gh-pages/js/genomes/grch38.js) for an example.
->	- a string (e.g. `"grch38"`) which will be used to obtain a javascript file from the [js/genomes](https://github.com/wtsi-web/Genoverse/tree/gh-pages/js/genomes) directory
->	- `undefined`, in which case `chromosomeSize` **MUST** be set (see below)
+>  - an object with keys of the number/letter/name of the chromosomes, and values in the form `{ "size": 10000 }`. 
+>  Additionally an array of bands can be supplied for each chromosome for drawing purposes - see [js/genomes/grch38.js](https://github.com/wtsi-web/Genoverse/blob/gh-pages/js/genomes/grch38.js) for an example.
+>  - a string (e.g. `"grch38"`) which will be used to obtain a javascript file from the [js/genomes](https://github.com/wtsi-web/Genoverse/tree/gh-pages/js/genomes) directory
+>  - `undefined`, in which case `chromosomeSize` **MUST** be set (see below)
 
 #### chromosomeSize (default `undefined`)
 > If `genome` not is provided, `chromosomeSize` **MUST** be set to the length of the chromosome. 
+>
 > If `genome` is provided, `chromosomeSize` will be set to the chromosome's `size` property, as defined by the genome object.
 
 ### What is displayed
@@ -92,18 +93,18 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 
 #### highlights (default `[]`)
 > An array of regions to highlight, in the form 
->
-> `{ "start": 100, "end", 200, "label": "My highlight", "removable": false }`. 
->
+```
+{ "start": 100, "end", 200, "label": "My highlight", "removable": false }
+``` 
 > `label` defaults to "start-end" (e.g. "100-200") if not provided. 
 > 
 > If `removable === false`, the highlight cannot be removed.
 
 #### plugins (default `[]`)
 > An array of `Genoverse.Plugins` to be used (from the [js/plugins](https://github.com/wtsi-web/Genoverse/tree/gh-pages/js/plugins) directory), e.g. 
->
-> `[ "controlPanel", "trackControls" ]`
->
+```
+[ "controlPanel", "trackControls" ]
+```
 > The strings in this array correspond to the namespace of each plugin, which are the same as their file names. 
 
 ### Interaction with the URL
@@ -125,15 +126,15 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 #### dragAction (default `"scroll"`) 
 > The action performed when a mouse drag happens on the genome browser. Can be:
 >
->	- `"scroll"` - Move the browser left or right
->	- `"select"` - Select the region
->	- `"off"`    - Do nothing
+>  - `"scroll"` - Move the browser left or right
+>  - `"select"` - Select the region
+>  - `"off"`    - Do nothing
 
 #### wheelAction (default `"off"`) 
 > The action performed when a mouse drag happens on the genome browser. Can be:
 >
->	- `"zoom"` - Zoom in or out
->	- `"off"`    - Do nothing
+>  - `"zoom"` - Zoom in or out
+>  - `"off"`    - Do nothing
 
 #### isStatic (default `false`)
 > If `true`, will stop drag, select and zoom actions occurring
@@ -169,9 +170,9 @@ Genoverse has a number of plugins to extend its core functionality. These plugin
 #### controlPanel
 > Adds
 >
->	- a "Tracks" button to the top left of the genome browser, which when clicked displays a list of enabled and available tracks, to be added or removed.
->	- a suite of buttons to the right of the genome browser, for scrolling, zooming and selecting regions of the genome
->	- the `karyotype` plugin
+>  - a "Tracks" button to the top left of the genome browser, which when clicked displays a list of enabled and available tracks, to be added or removed.
+>  - a suite of buttons to the right of the genome browser, for scrolling, zooming and selecting regions of the genome
+>  - the `karyotype` plugin
 
 #### karyotype
 > Adds an ideogram of the chromosome being used by the genome browser, with a marker showing the currently viewed region. The marker and be dragged and resized to change region, and chromosome bands can be jumped to by clicked on them.
