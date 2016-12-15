@@ -92,19 +92,25 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 
 #### highlights (default `[]`)
 > An array of regions to highlight, in the form 
+>
 > `{ "start": 100, "end", 200, "label": "My highlight", "removable": false }`. 
+>
 > `label` defaults to "start-end" (e.g. "100-200") if not provided. 
+> 
 > If `removable === false`, the highlight cannot be removed.
 
 #### plugins (default `[]`)
 > An array of `Genoverse.Plugins` to be used (from the [js/plugins](https://github.com/wtsi-web/Genoverse/tree/gh-pages/js/plugins) directory), e.g. 
+>
 > `[ "controlPanel", "trackControls" ]`
+>
 > The strings in this array correspond to the namespace of each plugin, which are the same as their file names. 
 
 ### Interaction with the URL
 
 #### urlParamTemplate (default `"r=__CHR__:__START__-__END__"`)
 > The template used to alter the web browser's URL. Should contain placeholders for chr, start and end.
+>
 > If `false` or empty string, no changes will be made to the URL when navigation occurs. 
 
 #### useHash (default `undefined`)
@@ -139,6 +145,7 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 
 #### storageType (default `"sessionStorage"`)
 > The storage object used to save track configuration. Set to `"localStorage"` for permanence.
+>
 > See Mozilla's [sessionStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) and [localStorage](https://developer.mozilla.org/en/docs/Web/API/Window/localStorage) documentation for further details.
 
 #### saveKey (default empty string)
