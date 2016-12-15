@@ -39,17 +39,5 @@ In addition to this, Genoverse has a set of [plugins](docs/plugins.md), which al
     });
   </script>
   ```
-
-## Configuration
-
-Genoverse has a large number of configurable properties, in order to allow customization. A basic example with two tracks (a scalebar and some genes) and no plugins would be
-
-```js
-var genoverse = new Genoverse({ 
-  genome: 'grch38', 
-  tracks: [ Genoverse.Track.Scalebar, Genoverse.Track.Gene ] 
-});
-```
-
-For more details about these properties, see [here](docs/configuration.md).
+  For more details about configuration properties, see [here](docs/configuration.md).
 
