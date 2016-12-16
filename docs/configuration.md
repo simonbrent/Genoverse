@@ -13,7 +13,8 @@ The following properties can be provided to the constructor for Genoverse:
 
 ### DOM element
 
-#### container (default `undefined`)
+#### container 
+###### Default `undefined`
 > A DOM node, jQuery selector, or string to create a jQuery selector (e.g. `"#genoverse"`) inside which the instance of Genoverse will be created. 
 If `undefined`, a `<div>` element will be appended to `document.body`.
 
