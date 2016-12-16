@@ -4,7 +4,7 @@ Genoverse is a portable, customizable, back-end independent JavaScript and HTML5
 
 Data is visualized in the browser, meaning Genoverse can be installed on any website and show data from a wide range of online or local sources.
 
-Genoverse works with a variety of formats, such as XML, JSON, BED, BAM, VCF, GFF, or delimited text files, and can be customized to parse and display any data source as required.
+Genoverse works with a variety of formats, such as JSON, BED, BAM, VCF, GFF, delimited text files, or XML, and can be customized to parse and display any data source as required.
 
 Genoverse works using a system of [**tracks**](docs/tracks.md) - essentially horizontal sections of the genome browser which display **features** - genes, variants, etc. with defined genomic start and end points. Each track has its own data set stored in a **model**, a method for displaying that data, stored in a **view**, and a **controller** to manage the creation of DOM elements, and user interactions with them. 
 
