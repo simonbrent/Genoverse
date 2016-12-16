@@ -39,5 +39,5 @@ In addition to this, Genoverse has a set of [plugins](docs/plugins.md), which al
     });
   </script>
   ```
-  For more details about configuration properties, see [here](docs/configuration.md).
+  See [index.html](/index.html) for example configuration, or the [documentation](docs/configuration.md) for more details about configuration properties.
 
