@@ -40,4 +40,9 @@ In addition to this, Genoverse has a set of [plugins](docs/plugins.md), which al
   </script>
   ```
   See [index.html](/index.html) for example configuration, or the [documentation](docs/configuration.md) for more details about configuration properties.
+  
+Once initalized, the instance of Genoverse is avaliable as a jQuery data attribute on the container DOM element, and can be accessed by
+```javascript
+var genoverse = $(container).data('genoverse');
+```
 
