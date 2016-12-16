@@ -4,6 +4,7 @@ The following are methods that can be called on an instance of Genoverse to perf
 
 #### genoverse.addTracks(tracks [, after ])
 > Add a number of tracks to the genome browser
+>
 > Argument | Type | Description
 > --- | --- | ---
 > tracks | Array | An array of `Genoverse.Track` class definitions to be added
@@ -11,6 +12,7 @@ The following are methods that can be called on an instance of Genoverse to perf
 
 #### genoverse.addTrack(track [, after ])
 > Add a single track to the genome browser
+>
 > Argument | Type | Description
 > --- | --- | ---
 > track | `Genoverse.Track` class | A `Genoverse.Track` class definition to be added
@@ -18,30 +20,35 @@ The following are methods that can be called on an instance of Genoverse to perf
 
 #### genoverse.removeTracks(tracks)
 > Remove a number of tracks from the genome browser
+>
 > Argument | Type | Description
 > --- | --- | ---
 > tracks | Array | An array of existing `Genoverse.Track` instances to be removed
 
 #### genoverse.removeTrack(track)
 > Remove a single track from the genome browser
+>
 > Argument | Type | Description
 > --- | --- | ---
 > track | `Genoverse.Track` instance | An existing `Genoverse.Track` instance to be removed
 
 #### genoverse.addHighlights(highlights)
 > Add a number of highlighted regions to the genome browser
+>
 > Argument | Type | Description
 > --- | --- | ---
 > tracks | Array | An array of highlighted regions to be added. See [configuration](configuration.md#highlights-default-) for the structure of highlights.
 
 #### genoverse.addHighlight(highlight)
 > Add a single highlighted regions to the genome browser
+>
 > Argument | Type | Description
 > --- | --- | ---
 > highlight | Object | A highlighted region to be added. See [configuration](configuration.md#highlights-default-) for the structure of highlights.
 
 #### genoverse.moveTo(start, end [, update] [, keepLength])
 > Moves the viewpoint to the region between `start` and `end`
+>
 > Argument | Type | Description
 > --- | --- | ---
 > start | Integer | a number between `1` and `genoverse.chromosomeSize`
@@ -51,12 +58,14 @@ The following are methods that can be called on an instance of Genoverse to perf
 
 #### genoverse.setWidth(width)
 > Resizes the `container` element for the instance of Genoverse
+>
 > Argument | Type | Description
 > --- | --- | ---
 > width | Integer | The pixel width to resize to
 
 #### genoverse.on(events, [, onTracks ], callback)
 > Execute functions before or after Genoverse or Genoverse.Track functions
+>
 > Argument | Type | Description
 > --- | --- | ---
 > events | String | One or more space-separated events. Events are function names with an uppercase first letter, appended to "before" or "after", e.g. "beforeAddTrack" or "afterSetWidth".
@@ -65,6 +74,7 @@ The following are methods that can be called on an instance of Genoverse to perf
 
 #### genoverse.on(events [, onTracks ])
 > Execute functions before or after Genoverse or Genoverse.Track functions
+>
 > Argument | Type | Description
 > --- | --- | ---
 > events | Object | An object whose keys are one or more space-separated events (see above), and whose values are the functions to be executed for those events
