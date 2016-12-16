@@ -61,7 +61,7 @@ The following are methods that can be called on an instance of Genoverse to perf
 >
 > Argument | Type | Description
 > --- | --- | ---
-> width | Integer | The pixel width to resize to
+> width | Integer | The width to resize to, in pixel
 
 #### genoverse.on(events, [, onTracks ], callback)
 > Execute functions before or after Genoverse or Genoverse.Track functions
