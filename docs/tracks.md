@@ -30,7 +30,7 @@ new Child().method();
 
 ## Configuration
 
-The tracks to be used by an instance of Genoverse are defined by the [tracks configuration property](docs/configuration.md#tracks-default-). This is an array containing either tracks from the [library](js/Track/library), or extensions of them or `Genoverse.Track` itself, for example:
+The tracks to be used by an instance of Genoverse are defined by the [tracks configuration property](docs/configuration.md#tracks-default-). This is an array containing either tracks from the [library](docs/tracks/library.md), or extensions of them or `Genoverse.Track` itself, for example:
 
 ```javascript
 [
