@@ -9,9 +9,9 @@ Tracks and their MVC components are object-oriented, created using Dean Edward's
 ```javascript
 // Adapted from the example on http://dean.edwards.name/weblog/2006/03/base/
 var Parent = Base.extend({
-	method: function() {
-	  alert("Hello World!");
-	}
+  method: function() {
+    alert("Hello World!");
+  }
 });
 
 var Child = Parent.extend({
@@ -34,15 +34,15 @@ The tracks to be used by an instance of Genoverse are defined by the [tracks con
 
 ```javascript
 [
-	Genoverse.Track.Scalebar,
-	Genoverse.Track.Gene.extend({
-		url: 'http://my.website.com/path/to/gene/data?chr=__CHR__&start=__START__&end=__END__'
-	}),
-	Genoverse.Track.extend({
-		id: 'myTrack',
-		name: 'My track',
-		url: 'http://my.website.com/path/to/track/data?chr=__CHR__&start=__START__&end=__END__'
-	})
+  Genoverse.Track.Scalebar,
+  Genoverse.Track.Gene.extend({
+   url: 'http://my.website.com/path/to/gene/data?chr=__CHR__&start=__START__&end=__END__'
+  }),
+  Genoverse.Track.extend({
+    id   : 'myTrack',
+    name : 'My track',
+    url  : 'http://my.website.com/path/to/track/data?chr=__CHR__&start=__START__&end=__END__'
+  })
 ]
 ```
 
@@ -51,13 +51,13 @@ This would create a genome browser with three tracks - a scalebar, genes from yo
 Track definitions can be extended to inherit or overwrite any functions existing in the `Genoverse.Track`, `Genoverse.Track.Model`, `Genoverse.Track.View` or `Genoverse.Track.Controller` namespaces, without having to know which namespace those functions are in. For example, the `draw` function is located in `Genoverse.Track.View`, but you can create a track which extends it as follows:
 
 ```javascript
-	Genoverse.Track.MyTrack = Genoverse.Track.extend({
-		draw: function () {
-			// Do my drawing operations
-			
-			this.base.apply(this, arguments); // Call the parent function will all the input arguments
-		}
-	});
+Genoverse.Track.MyTrack = Genoverse.Track.extend({
+  draw: function () {
+    // Do my drawing operations
+
+    this.base.apply(this, arguments); // Call the parent function will all the input arguments
+  }
+});
 ```
 
 The same is true for non-function properties of the MVC components. This makes it easy to create your own tracks without having to explicitly define their models, views and controllers. It should be noted, however, that if you want, for example, a reusable view, you will need to create a `Genoverse.Track.View`, at which point it is important to know what properties belong to it.
@@ -94,9 +94,9 @@ Another example would be:
 ```javascript
 Genoverse.Track.extend({
   ...
-  bump: true,
-  10000: false,
-  5000: { bump: false }
+  bump  : true,
+  10000 : false,
+  5000  : { bump: false }
 });
 ```
 
