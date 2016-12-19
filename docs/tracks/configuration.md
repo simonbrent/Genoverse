@@ -40,7 +40,6 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 #### unsortable (default `false`)
 > If `true`, the track cannot be moved by the user. If `false`, a drag handle will appear next to the track's name, allowing the user to change its vertical position within the genome browser.
 
-
 ### Fetching data
 
 #### url (default `undefined`)
@@ -48,7 +47,7 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 > ```
 > http://my.website.com/__ASSEMBLY__/path/to/track/data?chr=__CHR__&start=__START__&end=__END__
 > ```
-> These placeholders will be replaces with `genoverse.assembly`, `genoverse.chr`, and the start and end for the request respectively, before data is fetched from the server.
+> These placeholders will be replaces with [`genoverse.assembly`](/docs/configuration.md#assembly-default-undefined), `genoverse.chr`, and the start and end for the request respectively, before data is fetched from the server.
 
 #### urlParams (default `undefined`)
 > An object of query parameters to be added to each request for data, for example:
