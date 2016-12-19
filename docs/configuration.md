@@ -31,6 +31,9 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 #### end (default `1000000`)
 > A string or number defining the initial end position
 
+#### assembly (default `undefined`)
+> A string defining the assembly, which can be used by [track URL templates](/docs/tracks/configuration.md#url-default-undefined)
+
 #### genome (default `undefined`)
 > The genome to be used. Can be:
 >
