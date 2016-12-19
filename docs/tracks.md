@@ -2,7 +2,7 @@
 
 Genoverse's tracks are responsible for obtaining data from a source (a URL, file, or JavaScript array) and visualizing it in the genome browser.
 
-Tracks are defined in the `Genoverse.Track` namespace. Each track has its own data, set stored in a [`Genoverse.Track.Model`](docs/track_model.md), a method for displaying that data, stored in a [`Genoverse.Track.View`](docs/track_view.md), and a [`Genoverse.Track.Controller`](docs/track_controller.md) to manage the creation of DOM elements, and user interactions with them. 
+Tracks are defined in the `Genoverse.Track` namespace. Each track has its own data, set stored in a [`Genoverse.Track.Model`](/docs/tracks/models.md), a method for displaying that data, stored in a [`Genoverse.Track.View`](/docs/tracks/views.md), and a [`Genoverse.Track.Controller`](/docs/tracks/controllers.md) to manage the creation of DOM elements, and user interactions with them. 
 
 Tracks and their MVC components are object-oriented, created using Dean Edward's [Base.js](http://dean.edwards.name/weblog/2006/03/base/) library. This library provides the `extend` function for inheritance, and the ability to call `this.base()` inside any inherited function in order to access it parent's method of the same name, for example:
 
@@ -30,7 +30,7 @@ new Child().method();
 
 ## Configuration
 
-The tracks to be used by an instance of Genoverse are defined by the [tracks configuration property](docs/configuration.md#tracks-default-). This is an array containing either tracks from the [library](docs/tracks/library.md), or extensions of them or `Genoverse.Track` itself, for example:
+The tracks to be used by an instance of Genoverse are defined by the [tracks configuration property](/docs/configuration.md#tracks-default-). This is an array containing either tracks from the [library](/docs/tracks/library.md), or extensions of them or `Genoverse.Track` itself, for example:
 
 ```javascript
 [
@@ -62,7 +62,7 @@ Track definitions can be extended to inherit or overwrite any functions existing
 
 The same is true for non-function properties of the MVC components. This makes it easy to create your own tracks without having to explicitly define their models, views and controllers. It should be noted, however, that if you want, for example, a reusable view, you will need to create a `Genoverse.Track.View`, at which point it is important to know what properties belong to it.
 
-For more details of the properties and functions which can be extended or overwritten to create new types of tracks, see [here](docs/tracks/configuration.md).
+For more details of the properties and functions which can be extended or overwritten to create new types of tracks, see [here](/docs/tracks/configuration.md).
 
 ## Multiple models and views
 
