@@ -14,7 +14,7 @@ Adds
 Adds an ideogram of the chromosome being used by the genome browser, with a marker showing the currently viewed region. The marker and be dragged and resized to change region, and chromosome bands can be jumped to by clicked on them.
 
 ### trackControls
-Adds a toggleable pop-out menu to the right side of the track, containing buttons to view track information, remove the track, toggle the track between fixed height and auto resizing, and change track filters/configuration settings, if there are any.
+Adds a toggleable pop-out menu on the right side of the track, containing buttons to view track information, remove the track, toggle the track between fixed height and auto resizing, and change track filters/configuration settings, if there are any.
 
 ### resizer
 Adds a draggable handle to the bottom of each track, to allow the user to resize it to their desired height. If this plugin is not in use, tracks can only be resized to show all features currently in view.
