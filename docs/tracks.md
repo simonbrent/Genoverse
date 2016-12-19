@@ -60,7 +60,7 @@ Genoverse.Track.MyTrack = Genoverse.Track.extend({
 });
 ```
 
-The same is true for non-function properties of the MVC components. This makes it easy to create your own tracks without having to explicitly define their models, views and controllers. It should be noted, however, that if you want, for example, a reusable view, you will need to create a `Genoverse.Track.View`, at which point it is important to know what properties belong to it.
+The same is true for non-function properties of the MVC components. This makes it easy to create your own tracks without having to explicitly define their models, views and controllers. It should be noted however that if you want, for example, a reusable view, you will need to create a `Genoverse.Track.View`, at which point it is important to know what properties belong to it.
 
 For more details of the properties and functions which can be extended or overwritten to create new types of tracks, see [here](/docs/tracks/configuration.md).
 
