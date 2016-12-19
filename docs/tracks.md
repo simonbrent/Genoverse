@@ -87,7 +87,7 @@ Genoverse.Track.extend({
 });
 ```
 
-In regions between 1 (inclusive) and 100kb (exclusive), transcripts are displayed, with labels. In regions between 100k (inclusive) and 2Mb  (exclusive), genes are displayed with labels. Above 2Mb (inclusive), genes are displayed without labels. Note that the 2Mb configuration does not provide a model or view class - these are copied from the previous (next biggest) configuration. If smaller configurations do not provide model or view classes, the values for `track.model` and `track.view` are used. These default to `Genoverse.Track.Model` and `Genoverse.Track.View`.
+In regions between 1 (inclusive) and 100kb (exclusive), transcripts are displayed, with labels. In regions between 100k (inclusive) and 2Mb  (exclusive), genes are displayed with labels. Above 2Mb (inclusive), genes are displayed without labels. Note that the 2Mb configuration does not provide a model or view class - these are copied from the previous (next biggest numerical key, i.e. 100000) configuration. If smaller configurations do not provide model or view classes, the values for `track.model` and `track.view` are used. These default to `Genoverse.Track.Model` and `Genoverse.Track.View`.
 
 Another example would be:
 
