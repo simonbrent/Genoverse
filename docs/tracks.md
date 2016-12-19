@@ -36,7 +36,7 @@ The tracks to be used by an instance of Genoverse are defined by the [tracks con
 [
   Genoverse.Track.Scalebar,
   Genoverse.Track.Gene.extend({
-   url: 'http://my.website.com/path/to/gene/data?chr=__CHR__&start=__START__&end=__END__'
+    url: 'http://my.website.com/path/to/gene/data?chr=__CHR__&start=__START__&end=__END__'
   }),
   Genoverse.Track.extend({
     id   : 'myTrack',
