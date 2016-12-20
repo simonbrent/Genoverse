@@ -166,7 +166,7 @@ Genoverse.Track.Gene.extend({
       this.legendTrack.enable();
     }
   }
-}),
+})
 ```
 
 This example defines a gene track with two additional controls: one to filter genes based on their biotype, and a second to change the color used to draw those genes. The `setConfig` function disables the gene's legend when the genes are all one color.
