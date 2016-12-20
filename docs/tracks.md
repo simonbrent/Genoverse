@@ -101,3 +101,72 @@ Genoverse.Track.extend({
 ```
 
 In this case, features in the track are "bumped" - moved vertically within the track so that no features overlap horizontally - between 1 and 4999bp. Between 5000 and 9999bp, the features are not bumped. At 10kb and above, features are not displayed. At all times, the track will use instances of `Genoverse.Track.Model` and `Genoverse.Track.View`. In fact, in this scenario the track has two views - one with bumping, the other without - but only one model, since no model properties are changed between configurations.
+
+## Allowing a user to change a track's configuration
+
+As well as multiple models and views, it is possible to add user controls to tracks, providing the [trackControls plugin](/docs/plugins.md#trackcontrols) is enabled. This plugin provides a pop-out menu on the right side of the track, containing a set of buttons for interacting with the track.
+
+It is possible to prepend additional controls to this menu by defining `controls` and `configSettings` properties for a track. 
+
+The `controls` property should be an array containing elements which are either
+
+- a HTML string including a `"data-control"` attribute that can be made into a [jQuery](http://api.jquery.com/jQuery/#jQuery2) object 
+- a jQuery object with a [data](http://api.jquery.com/jQuery.data/) `"control"` value, which will be cloned (data and events bound to the object will be included in the clone)
+- an object as follows:
+  
+  ```javascript
+  {
+    "type": "select", // A type of DOM node
+    "name": "myControl", // Equivalent of data-control attribute
+    "options": [ // other types of DOM node can be give, and don't require an options property
+      { "value": "typeA", "text": "Type A" },
+      { "value": "typeB", "text": "Type B" },
+    ]
+  }
+  ```
+
+In each case, the data-control attribute will be used as keys in the `configSettings` property (below), and the values of the control's option DOM elements will be used as keys within that. Alternatively, for non-select controls, a click handler could be added directly to the control, to perform modifications to the track.
+
+### An example
+
+```javascript
+Genoverse.Track.Gene.extend({
+  controls: [
+    '<select data-control="coding">' +
+      '<option value="all">All</option>' +
+      '<option value="coding">Protein coding only</option>' +
+      '<option value="noncoding">Non coding only</option>' +
+    '</select>',
+    '<select data-control="colorscheme">' +
+      '<option value="ensembl">Ensembl gene color scheme</option>' +
+      '<option value="red">All red</option>' +
+      '<option value="black">All black</option>' +
+    '</select>'
+  ],
+  configSettings : {
+    coding: {
+      all       : { featureFilter: false },
+      coding    : { featureFilter: function (feature) { return feature.biotype == 'protein_coding'; } },
+      noncoding : { featureFilter: function (feature) { return feature.biotype != 'protein_coding'; } }
+    },
+    colorscheme: {
+      ensembl : { setFeatureColor: function (f) { this.base(f);      } },
+      red     : { setFeatureColor: function (f) { f.color = 'red';   } },
+      black   : { setFeatureColor: function (f) { f.color = 'black'; } }
+    }
+  },
+  
+  setConfig: function (type, config) {
+    this.base(type, config);
+
+    if (type === 'colorscheme') {
+      this.legendTrack[config === 'ensembl' ? 'enable' : 'disable']();
+    } else if (!this.legendTrack.disabled) {
+      this.legendTrack.disable();
+      this.legendTrack.enable();
+    }
+  }
+}),
+```
+
+This example defines a gene track with two additional controls: one to filter genes based on their biotype, and a second to change the color used to draw those genes. The `setConfig` function disables the gene's legend when the genes are all one color.
