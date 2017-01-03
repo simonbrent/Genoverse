@@ -150,20 +150,9 @@ Genoverse.Track.Gene.extend({
       noncoding : { featureFilter: function (feature) { return feature.biotype != 'protein_coding'; } }
     },
     colorscheme: {
-      ensembl : { setFeatureColor: function (f) { this.base(f);      } },
-      red     : { setFeatureColor: function (f) { f.color = 'red';   } },
-      black   : { setFeatureColor: function (f) { f.color = 'black'; } }
-    }
-  },
-  
-  setConfig: function (type, config) {
-    this.base(type, config);
-
-    if (type === 'colorscheme') {
-      this.legendTrack[config === 'ensembl' ? 'enable' : 'disable']();
-    } else if (!this.legendTrack.disabled) {
-      this.legendTrack.disable();
-      this.legendTrack.enable();
+      ensembl : { setFeatureColor: function (f) { this.base(f);      }                },
+      red     : { setFeatureColor: function (f) { f.color = 'red';   }, legend: false },
+      black   : { setFeatureColor: function (f) { f.color = 'black'; }, legend: false }
     }
   }
 })
