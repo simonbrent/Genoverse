@@ -130,32 +130,70 @@ In each case, the data-control attribute will be used as keys in the `configSett
 ### An example
 
 ```javascript
-Genoverse.Track.Gene.extend({
+Genoverse.Track.extend({
+  data: [
+    { chr: 1, start: 1,    end: 1000, type: 'A', subtype: 1, color: 'black'  },
+    { chr: 1, start: 2000, end: 3000, type: 'A', subtype: 2, color: 'blue'   },
+    { chr: 1, start: 4000, end: 5000, type: 'B', subtype: 2, color: 'orange' },
+    { chr: 1, start: 6000, end: 7000, type: 'B', subtype: 1, color: 'purple' }
+  ],
   controls: [
-    '<select data-control="coding">' +
+    '<select data-control="type">' +
       '<option value="all">All</option>' +
-      '<option value="coding">Protein coding only</option>' +
-      '<option value="noncoding">Non coding only</option>' +
+      '<option value="a">Type A only</option>' +
+      '<option value="b">Type B only</option>' +
+    '</select>',
+    '<select data-control="subtype">' +
+      '<option value="all">All</option>' +
+      '<option value="1">Sub-type 1 only</option>' +
+      '<option value="2">Sub-type 2 only</option>' +
     '</select>',
     '<select data-control="colorscheme">' +
-      '<option value="ensembl">Ensembl gene color scheme</option>' +
+      '<option value="default">Default</option>' +
       '<option value="red">All red</option>' +
-      '<option value="black">All black</option>' +
-    '</select>'
+      '<option value="green">All green</option>' +
+    '</select>',
+    $('<a title="Change feature height">Squish</a>').on('click', function () {
+      var track = $(this).text(function (i, text) { return /Un/.test(text) ? 'Squish' : 'Unsquish'; }).data('track');
+      track.setConfig('squish', !track.config.squish);
+    })
   ],
-  configSettings : {
-    coding: {
-      all       : { featureFilter: false },
-      coding    : { featureFilter: function (feature) { return feature.biotype == 'protein_coding'; } },
-      noncoding : { featureFilter: function (feature) { return feature.biotype != 'protein_coding'; } }
+  configSettings: {
+    type: {
+      all : { featureFilter: false },
+      a   : { featureFilter: function (feature) { return feature.type == 'A'; } },
+      b   : { featureFilter: function (feature) { return feature.type == 'B'; } }
+    },
+    subtype: {
+      all : { featureFilter: false },
+      1   : { featureFilter: function (feature) { return feature.subtype == 1; } },
+      2   : { featureFilter: function (feature) { return feature.subtype == 2; } }
     },
     colorscheme: {
-      ensembl : { setFeatureColor: function (f) { this.base(f);      }                },
-      red     : { setFeatureColor: function (f) { f.color = 'red';   }, legend: false },
-      black   : { setFeatureColor: function (f) { f.color = 'black'; }, legend: false }
+      default : { beforeDrawFeature: $.noop },
+      red     : { beforeDrawFeature: function (f) { f.color = 'red';   } },
+      green   : { beforeDrawFeature: function (f) { f.color = 'green'; } }
+    },
+    squish: {
+      true: {
+        featureHeight : 2,
+        featureMargin : { top: 1, right: 1, bottom: 1, left: 0 },
+        labels        : false
+      },
+      false: {
+        featureHeight : 6,
+        featureMargin : { top: 2, right: 2, bottom: 2, left: 0 },
+        labels        : true
+      }
     }
+  },
+  defaultConfig: {
+    type        : 'all',
+    subtype     : 'all',
+    colorscheme : 'default',
+    squish      : false
   }
 })
 ```
 
-This example defines a gene track with two additional controls: one to filter genes based on their biotype, and a second to change the color used to draw those genes. The `setConfig` function disables the gene's legend when the genes are all one color.
+This example defines a track with four controls: one to filter features based on their `type` attribute, and a second to filter features based on their `subtype` attribute, a third to change the color used to draw those features, and a fourth to "squish" the features, giving them a smaller height and removing their labels. The `defaultConfig` attribute defines the initial state of those controls. Note that `featureFilter` controls can be combined so that, for example, it is possible to display only those features of type A and subtype 1.
