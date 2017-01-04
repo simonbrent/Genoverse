@@ -170,7 +170,7 @@ Genoverse.Track.extend({
       2   : { featureFilter: function (feature) { return feature.subtype == 2; } }
     },
     colorscheme: {
-      default : { beforeDrawFeature: $.noop },
+      default : { beforeDrawFeature: false },
       red     : { beforeDrawFeature: function (f) { f.color = 'red';   } },
       green   : { beforeDrawFeature: function (f) { f.color = 'green'; } }
     },
