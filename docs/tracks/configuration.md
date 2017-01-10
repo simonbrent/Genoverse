@@ -129,3 +129,51 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 #### clickTolerance (default `0`)
 > Pixels of tolerance added to a click position when finding features for popup menus, when scale < 1. Increase to make it easier to click on small features (e.g. 1bp variants) when looking at large regions, at the cost of possibly showing feature menus for more features than expected.
 
+### Changing track settings
+
+#### configSettings (default `undefined`)
+> An object defining properties of the track (including its models, views, and controller) which can be changed after initialization, as follows:
+> ```javascript
+> {
+>   example1: {
+>     config1: { property1: "a", property2: "b", function1: function () { ... }, ... },
+>     config2: { property1: "x", property2: "y", function1: function () { ... }, ... }
+>   },
+>   example2: {
+>     config1: { property3: "a", property4: "b", function2: function () { ... }, ... },
+>     config2: { property3: "x", property4: "y", function2: function () { ... }, ... }
+>   }
+> }
+> ```
+> See [`track.setConfig`](/docs/tracks/api.md#tracksetconfigconfig) for details of how to change between different settings.
+
+#### defaultSettings (default `undefined`)
+> An object defining which `configSettings` are used on track initialization, in the form:
+> ```javascript
+> { example1: "config1", example2: "config2" }
+> ```
+> __Required__ when `configSettings` is provided.
+
+#### controls (default `undefined`)
+> An array providing users with the ability to change the track's configuration, providing the [trackControls plugin](/docs/plugins.md#trackcontrols) is enabled. 
+> The elements of the array can be:
+>
+> - a HTML string including a `"data-control"` attribute that can be made into a [jQuery](http://api.jquery.com/jQuery/#jQuery2) object 
+> - a jQuery object with a [data](http://api.jquery.com/jQuery.data/) `"control"` value, which will be cloned (data and events bound to the object will be included in the clone)
+> - an object as follows:
+>  
+>    ```javascript
+>    {
+>      "type": "select", // A type of DOM node
+>      "name": "myControl", // Equivalent of data-control attribute
+>      "options": [ // other types of DOM node can be give, and don't require an options property
+>        { "value": "typeA", "text": "Type A" },
+>        { "value": "typeB", "text": "Type B" },
+>      ]
+>    }
+>    ```
+> 
+> In each case, the data-control attribute will be used as keys in the `configSettings` property (above), and the values of the control's option DOM elements will be used as keys within that. Alternatively, for non-select controls, a click handler could be added directly to the control, to perform modifications to the track.
+>
+
+[See here](/docs/tracks.md#allowing-a-user-to-change-a-tracks-configuration) for more information about track configurations.
