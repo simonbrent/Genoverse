@@ -165,10 +165,10 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 >    ```javascript
 >    {
 >      "type": "select", // A type of DOM node
->      "name": "myControl", // Equivalent of data-control attribute
+>      "name": "example1", // Equivalent of data-control attribute
 >      "options": [ // other types of DOM node can be give, and don't require an options property
->        { "value": "typeA", "text": "Type A" },
->        { "value": "typeB", "text": "Type B" },
+>        { "value": "config1", "text": "Config 1" },
+>        { "value": "config2", "text": "Config 2" },
 >      ]
 >    }
 >    ```
