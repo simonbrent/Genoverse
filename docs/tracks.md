@@ -106,26 +106,7 @@ In this case, features in the track are "bumped" - moved vertically within the t
 
 As well as multiple models and views, it is possible to add user controls to tracks, providing the [trackControls plugin](/docs/plugins.md#trackcontrols) is enabled. This plugin provides a pop-out menu on the right side of the track, containing a set of buttons for interacting with the track.
 
-It is possible to prepend additional controls to this menu by defining `controls` and `configSettings` properties for a track. 
-
-The `controls` property should be an array containing elements which are either
-
-- a HTML string including a `"data-control"` attribute that can be made into a [jQuery](http://api.jquery.com/jQuery/#jQuery2) object 
-- a jQuery object with a [data](http://api.jquery.com/jQuery.data/) `"control"` value, which will be cloned (data and events bound to the object will be included in the clone)
-- an object as follows:
-  
-  ```javascript
-  {
-    "type": "select", // A type of DOM node
-    "name": "myControl", // Equivalent of data-control attribute
-    "options": [ // other types of DOM node can be give, and don't require an options property
-      { "value": "typeA", "text": "Type A" },
-      { "value": "typeB", "text": "Type B" },
-    ]
-  }
-  ```
-
-In each case, the data-control attribute will be used as keys in the `configSettings` property (below), and the values of the control's option DOM elements will be used as keys within that. Alternatively, for non-select controls, a click handler could be added directly to the control, to perform modifications to the track.
+It is possible to prepend additional controls to this menu by defining [`configSettings`](/docs/tracks/configuration.md#configsettings-default-undefined), [`defaultConfig`](/docs/tracks/configuration.md#defaultconfig-default-undefined), and [`controls`](/docs/tracks/configuration.md#controls-default-undefined), properties for a track. 
 
 ### An example
 
