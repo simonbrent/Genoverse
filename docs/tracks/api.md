@@ -13,7 +13,7 @@ The following are methods that can be called on a Genoverse.Track instance to pe
 >
 > Argument | Type | Description
 > --- | --- | ---
-> config | Object | An object in the form `{ type1: "name1", type2, "name2" }`, where each `type` and `name` fulfills the criteria of `track.setConfig(type, name)` (above)
+> config | Object | An object in the form `{ type1: "name1", type2, "name2" }`, where each `type` and `name` fulfills the criteria of `track.setConfig(type, name)`, above
 
 #### track.remove()
 > Remove the track from the genome browser
