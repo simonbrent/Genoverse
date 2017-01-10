@@ -147,7 +147,7 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 > ```
 > See [`track.setConfig`](/docs/tracks/api.md#tracksetconfigconfig) for details of how to change between different settings.
 
-#### defaultSettings (default `undefined`)
+#### defaultConfig (default `undefined`)
 > An object defining which `configSettings` are used on track initialization, in the form:
 > ```javascript
 > { example1: "config1", example2: "config2" }
