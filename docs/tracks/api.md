@@ -2,6 +2,7 @@ The following are methods that can be called on a Genoverse.Track instance to pe
 
 #### track.setConfig(type, name)
 > Set the track's [configuration](/docs/tracks/configuration.md#changing-track-settings) after initalization
+>
 > Argument | Type | Description
 > --- | --- | ---
 > type | String | One of the keys in `track.configSettings`
@@ -9,6 +10,7 @@ The following are methods that can be called on a Genoverse.Track instance to pe
 
 #### track.setConfig(config)
 > Set the track's [configuration](/docs/tracks/configuration.md#changing-track-settings) after initalization
+>
 > Argument | Type | Description
 > --- | --- | ---
 > config | Object | An object in the form `{ type1: "name1", type2, "name2" }`, where each `type` and `name` fulfills the criteria of `track.setConfig(type, name)` (above)
