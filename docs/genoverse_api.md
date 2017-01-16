@@ -46,13 +46,14 @@ The following are methods that can be called on an instance of Genoverse to perf
 > --- | --- | ---
 > highlight | Object | A highlighted region to be added. See [configuration](configuration.md#highlights-default-) for the structure of highlights.
 
-#### genoverse.moveTo(start, end [, update] [, keepLength])
+#### genoverse.moveTo(chr, start, end [, update] [, keepLength])
 > Moves the viewpoint to the region between `start` and `end`
 >
 > Argument | Type | Description
 > --- | --- | ---
-> start | Integer | a number between `1` and `genoverse.chromosomeSize`
-> end | Integer | a number between `start` and `genoverse.chromosomeSize`
+> chr | String or undefined | The name of a chromosome defined by `genoverse.genome`. If `genoverse.genome` is undefined, `chr` must be undefined, or the current value of `genoverse.chr`.
+> start | Integer | A number between `1` and `genoverse.chromosomeSize`
+> end | Integer | A number between `start` and `genoverse.chromosomeSize`
 > update | Boolean or undefined | If `true`, the URL will be updated with the new `start` and `end`
 > keepLength | Boolean or undefined | if `true`, the new viewpoint will have the same zoom level as before (`end - start` remains unchanged), centered on the given `start` and `end`.
 
