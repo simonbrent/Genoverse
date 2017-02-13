@@ -130,4 +130,4 @@ The following are methods that can be called on an instance of Genoverse or Geno
 > Clears all data stored by the track's models and views, removes the images that have been drawn by the track so far, and then requests new data, and creates new images for the current location in the genome browser
 
 #### track.resetHeight()
-> Sets the track's height to its initial values
+> Sets the track's height to its initial value
