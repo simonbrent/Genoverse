@@ -123,7 +123,7 @@
 > e | [jQuery event](http://api.jquery.com/category/events/) | The mousedown event
 
 #### genoverse.mouseup(e)
-> Ends the current scroll or select action by calling [`genoverse.stopDragScroll(update)`](#genoversestopdragscrollupdate) or [`genoverse.stopDragSelect(e)`](#genoversestp[stopdragselecte), as applicable
+> Ends the current scroll or select action by calling [`genoverse.stopDragScroll(update)`](#genoversestopdragscroll-update-) or [`genoverse.stopDragSelect(e)`](#genoversestopdragselecte), as applicable
 >
 > Argument | Type | Description
 > --- | --- | ---
