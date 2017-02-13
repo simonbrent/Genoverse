@@ -145,3 +145,17 @@
 > --- | --- | ---
 > e | [jQuery event](http://api.jquery.com/category/events/) | The user event which will cause a zoom operation
 > delta | `1` or `-1` | `1` for zoom in, `-1` for zoom out
+
+#### genoverse.zoomIn([ x ])
+> Calls [`genoverse.setRange`](#genoversesetrangestart-end--update--keeplength) to zoom in, halving the size of the browser region (e.g. 100-200 becomes 125-175). If an `x` argument is provided, the zoom will step towards that point, instead of directly inward. `x`is the difference between the x coordinate of a mousewheel zoom event and the left offset of the browser images on the page.
+>
+> Argument | Type | Description
+> --- | --- | ---
+> x | Integer or undefined | The point to zoom towards
+
+#### genoverse.zoomOut([ x ])
+> Calls [`genoverse.setRange`](#genoversesetrangestart-end--update--keeplength) to zoom out, doubling the size of the browser region (e.g. 100-200 becomes 50-250). If an `x` argument is provided, the zoom will step towards that point, instead of directly outward. `x`is the difference between the x coordinate of a mousewheel zoom event and the left offset of the browser images on the page.
+>
+> Argument | Type | Description
+> --- | --- | ---
+> x | Integer or undefined | The point to zoom towards
