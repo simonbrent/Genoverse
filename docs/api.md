@@ -132,7 +132,7 @@ The following are methods that can be called on an instance of Genoverse or Geno
 #### track.resetHeight()
 > Sets the track's height to its initial value
 
-#### track.setName(name)
+#### track.updateName(name)
 > Changes the name of the track, as displayed in the label to the left of its images.
 >
 > Argument | Type | Description
