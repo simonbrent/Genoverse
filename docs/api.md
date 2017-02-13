@@ -1,6 +1,8 @@
-# Genoverse API
+# API
 
-The following are methods that can be called on an instance of Genoverse to perform actions required by UI changes external to the instance (i.e. from the website you have integrated Genoverse into).
+The following are methods that can be called on an instance of Genoverse or Genoverse.Track to perform actions required by UI changes external to the instance (i.e. from the website you have integrated Genoverse into).
+
+## Genoverse API
 
 #### genoverse.addTracks(tracks [, after ])
 > Add a number of tracks to the genome browser
@@ -84,5 +86,48 @@ The following are methods that can be called on an instance of Genoverse to perf
 #### genoverse.reset()
 > Removes all existing data visualizations, and recreates them
 
+#### genoverse.resetTrackHeights()
+> Sets all track heights to their initial values
+
 #### genoverse.destroy()
 > Removes the instance of Genoverse from the web page
+
+## Genoverse.Track API
+
+#### track.prop(key [, value ])
+> Get or set a property on the track or it's model, view or controller, without needing to know specifically which of these objects the property belongs to. Also available on `track.model`, `track.view`, and `track.controller` with identical functionality.
+>
+> Argument | Type | Description
+> --- | --- | ---
+> key | String | The name of the property to be returned.
+> value | Anything | If defined, the value of the property will be set to this argument. If `null`, the property will be removed from its object.
+
+#### track.setConfig(type, name)
+> Set the track's [configuration](/docs/tracks/configuration.md#changing-track-settings) after initalization
+>
+> Argument | Type | Description
+> --- | --- | ---
+> type | String | One of the keys in `track.configSettings`
+> name | String | One of the keys in `track.configSettings[type]`
+
+#### track.setConfig(config)
+> Set the track's [configuration](/docs/tracks/configuration.md#changing-track-settings) after initalization
+>
+> Argument | Type | Description
+> --- | --- | ---
+> config | Object | An object in the form `{ type1: "name1", type2, "name2" }`, where each `type` and `name` fulfills the criteria of `track.setConfig(type, name)`, above
+
+#### track.remove()
+> Remove the track from the genome browser
+
+#### track.disable()
+> Hide the track in the genome browser, without removing it
+
+#### track.enable()
+> Show the track in the genome browser, if it had previously been disabled
+
+#### track.reset()
+> Clears all data stored by the track's models and views, removes the images that have been drawn by the track so far, and then requests new data, and creates new images for the current location in the genome browser
+
+#### track.resetHeight()
+> Sets the track's height to its initial values
