@@ -38,7 +38,7 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 > The genome to be used. Can be:
 >
 >  - an object with keys of the number/letter/name of the chromosomes, and values in the form `{ "size": 10000 }`. 
->  Additionally an array of bands can be supplied for each chromosome for drawing purposes - see [js/genomes/grch38.js](https://github.com/wtsi-web/Genoverse/blob/gh-pages/js/genomes/grch38.js) for an example.
+>  Additionally an array of bands can be supplied for each chromosome for drawing purposes - see [js/genomes/grch38.js](https://github.com/wtsi-web/Genoverse/blob/gh-pages/js/genomes/grch38.js) for an example. These files can be created for species present in [Ensembl](http://www.ensembl.org/info/about/species.html) by modifying the example node script [utils/createGenome.js](https://github.com/wtsi-web/Genoverse/blob/gh-pages/utils/createGenome.js) for the species required.
 >  - a string (e.g. `"grch38"`) which will be used to obtain a javascript file from the [js/genomes](https://github.com/wtsi-web/Genoverse/tree/gh-pages/js/genomes) directory
 >  - `undefined`, in which case `chromosomeSize` **MUST** be set (see below)
 
