@@ -67,11 +67,11 @@ The following are methods that can be called on an instance of Genoverse or Geno
 > width | Integer | The width to resize to, in pixel
 
 #### genoverse.setDragAction(action)
-> Sets whether a drag (mousedown, mousemove, mouseup) results in the browser region moving, a region being selected, or nothing
+> Sets [`genoverse.dragAction`](/docs/configuration.md#dragaction-default-scroll), determining whether a drag (mousedown, mousemove, mouseup) results in the browser region moving, a region being selected, or nothing
 >
 > Argument | Type | Description
 > --- | --- | ---
-> action | String | Can be [`"select"`, `"scroll"`, or `"off"`](/docs/configuration.md#dragaction-default-scroll)
+> action | `"select"`, `"scroll"`, or `"off"` | The value which `genoverse.dragAction` will be set to
 
 #### genoverse.on(events, [, onTracks ], callback)
 > Execute functions before or after Genoverse or Genoverse.Track functions
