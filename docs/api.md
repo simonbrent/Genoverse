@@ -73,6 +73,13 @@ The following are methods that can be called on an instance of Genoverse or Geno
 > --- | --- | ---
 > action | `"select"`, `"scroll"`, or `"off"` | The value which `genoverse.dragAction` will be set to
 
+#### genoverse.setWheelAction(action)
+> Sets [`genoverse.wheelAction`](/docs/configuration.md#wheelaction-default-off), determining whether a mousewheel scroll zooms the browser in and out, or does nothing
+>
+> Argument | Type | Description
+> --- | --- | ---
+> action | `"zoom"` or `"off"` | The value which `genoverse.wheelAction` will be set to
+
 #### genoverse.on(events, [, onTracks ], callback)
 > Execute functions before or after Genoverse or Genoverse.Track functions
 >
