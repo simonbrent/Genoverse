@@ -43,7 +43,7 @@ The following are functions that exist in the Genoverse object. Any of these can
 > delta | Integer | The number of pixels to move the browser region by (> 1 for left to right, < 1 for right to left)
 
 #### genoverse.setRange(start, end [, update] [, keepLength])
-> Sets `genoverse.start` and `genoverse.end`, moving the browser region in the process.
+> Sets [`genoverse.start`](/docs/configuration.md#start-default-1) and [`genoverse.end`](/docs/configuration.md#end-default-1000000), moving the browser region in the process.
 > 
 > **Note:** [`genoverse.moveTo`](/docs/api.md#genoversemovetochr-start-end--update--keeplength) should be used instead to change the location of a Genoverse instance externally.
 >
