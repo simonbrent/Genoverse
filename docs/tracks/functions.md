@@ -46,8 +46,8 @@ The following functions are called during track creation and do not have before/
 > Argument | Type | Description
 > --- | --- | ---
 > object | `Genoverse.Track.Model`, `Genoverse.Track.View` or `Genoverse.Track.Controller` class | The class to be instantiated
-> functions | Object or undefined | An object whose values are functions to be overwritten in the instance
-> properties | Object or undefined | An object whose values are non-function properties to be overwritten in the instance
+> functions | Object or `undefined` | An object whose values are functions to be overwritten in the instance
+> properties | Object or `undefined` | An object whose values are non-function properties to be overwritten in the instance
 
 #### track.getSettingsForLength()
 > Returns the value of [`track.lengthMap`](#tracksetlengthmap) with the lowest first element value which is less that the current size of the browser region
@@ -77,3 +77,29 @@ The following functions are called during track creation and do not have before/
  
 #### track.remove()
 > See the [api documentation](/docs/api.md#trackremove)
+
+## Misc
+
+#### track.setHeight(height [, forceShow ])
+> Sets `track.height`. If the track needs to be hidden, `track.height` will be set to `0`. 
+> 
+> Argument | Type | Description
+> --- | --- | ---
+> height | Integer | The new height for the track
+> forceShow | Boolean or `undefined` | If `true`, `height` will be used even if the track would normally be hidden
+
+#### track.resetHeight()
+> See the [api documentation](/docs/api.md#trackresetheight)
+
+#### track.addLegend([ config, class ])
+> Creates a `Genoverse.Track.Legend` instance for the track, adding it to the browser.
+> Argument | Type | Description
+> --- | --- | ---
+> config | Object or `undefined` | Properties to be given to the legend class constructor
+> class | Child class of `Genoverse.Track.Legend` or `undefined` | The class to be used for the legend. Defaults to `Genoverse.Track.Legend`.
+
+#### track.updateName(name)
+> See the [api documentation](/docs/api.md#trackupdatenamename)
+
+#### track.prop(key [, value ])
+> See the [api documentation](/docs/api.md#trackpropkey--value-)
