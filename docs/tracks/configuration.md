@@ -2,7 +2,7 @@
 
 The following are properties for `Genoverse.Track` and its MVC components. These can be overwritten to customize the way tracks get data and display it in the browser.
 
-### Track display, resizing, and reordering
+## Track display, resizing, and reordering
 
 #### name (default `undefined`)
 > The name of the track, which appears in its label on the left of the genome browser
@@ -40,7 +40,7 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 #### unsortable (default `false`)
 > If `true`, the track cannot be moved by the user. If `false`, a drag handle will appear next to the track's name, allowing the user to change its vertical position within the genome browser.
 
-### Fetching data
+## Fetching data
 
 #### url (default `undefined`)
 > The URL template used to fetch data from a server. Can contain placeholders for `__ASSEMBLY__`, `__CHR__`, `__START__`, and `__END__`, for example 
@@ -69,7 +69,7 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 #### xhrFields (default `undefined`)
 > The xhrFields setting to be used in the [jQuery.ajax](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings) requests to get data for the track
 
-### Drawing features
+## Drawing features
 
 #### featureHeight (default `undefined`)
 > The height of each feature, if `feature.height` is not set. If `undefined`,  will be set to `track.height`
@@ -124,12 +124,12 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 > ```
 > have the same effect.
 
-### Interacting with features
+## Interacting with features
 
 #### clickTolerance (default `0`)
 > Pixels of tolerance added to a click position when finding features for popup menus, when scale < 1. Increase to make it easier to click on small features (e.g. 1bp variants) when looking at large regions, at the cost of possibly showing feature menus for more features than expected.
 
-### Changing track settings
+## Changing track settings
 
 #### configSettings (default `undefined`)
 > An object defining properties of the track (including its models, views, and controller) which can be changed after initialization, as follows:
