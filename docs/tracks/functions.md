@@ -74,6 +74,6 @@ The following functions are called during track creation and do not have before/
 
 #### track.reset()
 > See the [api documentation](/docs/api.md#trackreset)
-> 
+ 
 #### track.remove()
 > See the [api documentation](/docs/api.md#trackremove)
