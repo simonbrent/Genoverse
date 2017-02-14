@@ -1,6 +1,8 @@
-## Genoverse
+# Genoverse functions
 
-### Initialization 
+The following are functions that exist in the Genoverse object. Any of these can be overwritten by supplying them as properties in configuration, or have before/after events added to them.
+
+## Initialization 
 
 #### genoverse.init()
 > Called once the Genoverse instance is created. Sets initial properties of the instance and calls functions to creates its DOM elements, event handlers, tracks and highlights, and set the starting location.
@@ -15,7 +17,7 @@
 #### genoverse.addUserEventHandlers()
 > Created the event handlers required for users to interact with the instance of Genoverse
 
-### Configuration
+## Configuration
 
 #### genoverse.loadConfig()
 > If `genoverse.saveable` is `true`, configuration will be loaded from `window[genoverse.storageType].getItem(genoverse.saveKey)`. This configuration contains the user's previous tracks, their ordering, heights, and any other [track configuration settings](/docs/tracks/configuration.md#changing-track-settings). If no configuration exists, the default set of tracks will be used instead.
@@ -26,7 +28,7 @@
 #### genoverse.resetConfig()
 > If `genoverse.saveable` is `true`, removes all tracks and unremovable highlights, adds the default set of tracks, and removes the value in `genoverse.saveKey` from `window[genoverse.storageType]`.
 
-### Changing browser location
+## Changing browser location
 
 #### genoverse.moveTo(chr, start, end [, update] [, keepLength])
 > See the [api documentation](/docs/api.md#genoversemovetochr-start-end--update--keeplength)
@@ -55,7 +57,7 @@
 #### genoverse.setScale()
 > Sets `genoverse.scale` to (width of the browser's containing DOM element in pixels / size of genomic region being viewed). If the scale changes, forces all tracks to draw new images at the new scale.
 
-### User events
+## User events
 
 #### genoverse.setDragAction(action)
 > See the [api documentation](/docs/api.md#genoversesetdragactionaction)
@@ -160,7 +162,7 @@
 > --- | --- | ---
 > x | Integer or undefined | The point to zoom towards
 
-### Track interactions
+## Track interactions
 
 #### genoverse.addTracks
 > See the [api documentation](/docs/api.md#genoverseaddtrackstracks--after-)
@@ -182,7 +184,7 @@
 #### genoverse.sortTracks
 > Reorders the tracks' DOM elements based on each track's `order` property, lowest first.
 
-### Highlight interactions
+## Highlight interactions
 
 #### genoverse.addHighlights(highlights)
 > See the [api documentation](/docs/api.md#genoverseaddhighlightshighlights)
@@ -190,7 +192,7 @@
 #### genoverse.addHighlight(highlight)
 > See the [api documentation](/docs/api.md#genoverseaddhighlighthighlight)
 
-### URL interactions
+## URL interactions
 
 #### genoverse.updateURL
 > If [`genoverse.urlParamTemplate`](/docs/configuration.md#urlparamtemplate-default-r__chr____start__-__end__) is set, the URL will be updated to reflect the current browser region. This will be done either by using `window.history.pushState`, or by updating `window.location.hash`, depending on the value of [`genoverse.useHash`](/docs/configuration.md#usehash-default-undefined).
@@ -204,7 +206,7 @@
 #### genoverse.getQueryString
 > Returns a string of [`genoverse.urlParamTemplate`](/docs/configuration.md#urlparamtemplate-default-r__chr____start__-__end__) with the placeholders replaced with their relevant values, to be used in updating the URL. If [`genoverse.useHash`](/docs/configuration.md#usehash-default-undefined) is `false`, this will be appended to any existing value of `window.location.search` such that other parameters are unchanged.
 
-### Popup menus
+## Popup menus
 
 #### genoverse.makeMenu(features [, event, track ])
 > Creates a popup menu for one or more features. If more than one feature is provided, the popup will contain one link per feature which each create another popup for that feature
@@ -227,7 +229,7 @@
 #### genoverse.closeMenus([ track ])
 > See the [api documentation](/docs/api.md#genoverseclosemenus-track-)
 
-### Misc
+## Misc
 
 #### genoverse.on()
 > See the [api documentation](/docs/api.md#genoverseonevents--ontracks--callback)
