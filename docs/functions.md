@@ -57,6 +57,73 @@ The following are functions that exist in the Genoverse object. Any of these can
 #### genoverse.setScale()
 > Sets `genoverse.scale` to (width of the browser's containing DOM element in pixels / size of genomic region being viewed). If the scale changes, forces all tracks to draw new images at the new scale.
 
+## Track interactions
+
+#### genoverse.addTracks
+> See the [api documentation](/docs/api.md#genoverseaddtrackstracks--after-)
+
+#### genoverse.addTrack
+> See the [api documentation](/docs/api.md#genoverseaddtracktrack--after-)
+
+#### genoverse.removeTracks
+> See the [api documentation](/docs/api.md#genoverseremovetrackstracks)
+
+#### genoverse.removeTrack
+> See the [api documentation](/docs/api.md#genoverseremovetracktrack)
+
+#### genoverse.updateTrackOrder(e, ui)
+> Called when a user moves track labels to reorder tracks in the browser. Set the moved track's `order` property such that it is between the `order` properties of its new immediate siblings. [`genoverse.sortTracks`](#genoversesorttracks) is then called to update the position of the track's image element.
+> 
+> See [jQuery UI sortable update event](http://api.jqueryui.com/sortable/#event-update) for argument details.
+
+#### genoverse.sortTracks
+> Reorders the tracks' DOM elements based on each track's `order` property, lowest first.
+
+## Highlight interactions
+
+#### genoverse.addHighlights(highlights)
+> See the [api documentation](/docs/api.md#genoverseaddhighlightshighlights)
+
+#### genoverse.addHighlight(highlight)
+> See the [api documentation](/docs/api.md#genoverseaddhighlighthighlight)
+
+## URL interactions
+
+#### genoverse.updateURL
+> If [`genoverse.urlParamTemplate`](/docs/configuration.md#urlparamtemplate-default-r__chr____start__-__end__) is set, the URL will be updated to reflect the current browser region. This will be done either by using `window.history.pushState`, or by updating `window.location.hash`, depending on the value of [`genoverse.useHash`](/docs/configuration.md#usehash-default-undefined).
+
+#### genoverse.popState
+> Called by [`window.onpopstate`](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate) or [`window.onhashchange`](https://developer.mozilla.org/en/docs/Web/API/WindowEventHandlers/onhashchange) to update the browser region if the user uses the back or forward buttons in their web browser.
+
+#### genoverse.getURLCoords
+> Returns an object in the form `{ "chr": "1", "start": 123, "end": 456 }` by parsing the URL using the value of [`genoverse.urlParamTemplate`](/docs/configuration.md#urlparamtemplate-default-r__chr____start__-__end__)
+
+#### genoverse.getQueryString
+> Returns a string of [`genoverse.urlParamTemplate`](/docs/configuration.md#urlparamtemplate-default-r__chr____start__-__end__) with the placeholders replaced with their relevant values, to be used in updating the URL. If [`genoverse.useHash`](/docs/configuration.md#usehash-default-undefined) is `false`, this will be appended to any existing value of `window.location.search` such that other parameters are unchanged.
+
+## Popup menus
+
+#### genoverse.makeMenu(features [, event, track ])
+> Creates a popup menu for one or more features. If more than one feature is provided, the popup will contain one link per feature which each create another popup for that feature
+> 
+> Argument | Type | Description
+> --- | --- | ---
+> features | Feature object or array of feature objects | The feature(s) to make the menu for
+> event | [jQuery event](http://api.jquery.com/category/events/) or undefined | The click event that created the menu, used to position the menu at the mouse pointer
+> track | Genoverse.Track or undefined | The track which was clicked on
+
+#### genoverse.makeFeatureMenu(features [, event, track ])
+> Called by [`genoverse.makeMenu`](#genoversemakemenufeatures--event-track-) to create a popup menu for a single feature
+> 
+> Argument | Type | Description
+> --- | --- | ---
+> feature | Feature object | The feature to make the menu for
+> event | [jQuery event](http://api.jquery.com/category/events/) or undefined | The click event that created the menu, used to position the menu at the mouse pointer
+> track | Genoverse.Track instance or undefined | The track which was clicked on
+
+#### genoverse.closeMenus([ track ])
+> See the [api documentation](/docs/api.md#genoverseclosemenus-track-)
+
 ## User events
 
 #### genoverse.setDragAction(action)
@@ -161,73 +228,6 @@ The following are functions that exist in the Genoverse object. Any of these can
 > Argument | Type | Description
 > --- | --- | ---
 > x | Integer or undefined | The point to zoom towards
-
-## Track interactions
-
-#### genoverse.addTracks
-> See the [api documentation](/docs/api.md#genoverseaddtrackstracks--after-)
-
-#### genoverse.addTrack
-> See the [api documentation](/docs/api.md#genoverseaddtracktrack--after-)
-
-#### genoverse.removeTracks
-> See the [api documentation](/docs/api.md#genoverseremovetrackstracks)
-
-#### genoverse.removeTrack
-> See the [api documentation](/docs/api.md#genoverseremovetracktrack)
-
-#### genoverse.updateTrackOrder(e, ui)
-> Called when a user moves track labels to reorder tracks in the browser. Set the moved track's `order` property such that it is between the `order` properties of its new immediate siblings. [`genoverse.sortTracks`](#genoversesorttracks) is then called to update the position of the track's image element.
-> 
-> See [jQuery UI sortable update event](http://api.jqueryui.com/sortable/#event-update) for argument details.
-
-#### genoverse.sortTracks
-> Reorders the tracks' DOM elements based on each track's `order` property, lowest first.
-
-## Highlight interactions
-
-#### genoverse.addHighlights(highlights)
-> See the [api documentation](/docs/api.md#genoverseaddhighlightshighlights)
-
-#### genoverse.addHighlight(highlight)
-> See the [api documentation](/docs/api.md#genoverseaddhighlighthighlight)
-
-## URL interactions
-
-#### genoverse.updateURL
-> If [`genoverse.urlParamTemplate`](/docs/configuration.md#urlparamtemplate-default-r__chr____start__-__end__) is set, the URL will be updated to reflect the current browser region. This will be done either by using `window.history.pushState`, or by updating `window.location.hash`, depending on the value of [`genoverse.useHash`](/docs/configuration.md#usehash-default-undefined).
-
-#### genoverse.popState
-> Called by [`window.onpopstate`](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate) or [`window.onhashchange`](https://developer.mozilla.org/en/docs/Web/API/WindowEventHandlers/onhashchange) to update the browser region if the user uses the back or forward buttons in their web browser.
-
-#### genoverse.getURLCoords
-> Returns an object in the form `{ "chr": "1", "start": 123, "end": 456 }` by parsing the URL using the value of [`genoverse.urlParamTemplate`](/docs/configuration.md#urlparamtemplate-default-r__chr____start__-__end__)
-
-#### genoverse.getQueryString
-> Returns a string of [`genoverse.urlParamTemplate`](/docs/configuration.md#urlparamtemplate-default-r__chr____start__-__end__) with the placeholders replaced with their relevant values, to be used in updating the URL. If [`genoverse.useHash`](/docs/configuration.md#usehash-default-undefined) is `false`, this will be appended to any existing value of `window.location.search` such that other parameters are unchanged.
-
-## Popup menus
-
-#### genoverse.makeMenu(features [, event, track ])
-> Creates a popup menu for one or more features. If more than one feature is provided, the popup will contain one link per feature which each create another popup for that feature
-> 
-> Argument | Type | Description
-> --- | --- | ---
-> features | Feature object or array of feature objects | The feature(s) to make the menu for
-> event | [jQuery event](http://api.jquery.com/category/events/) or undefined | The click event that created the menu, used to position the menu at the mouse pointer
-> track | Genoverse.Track or undefined | The track which was clicked on
-
-#### genoverse.makeFeatureMenu(features [, event, track ])
-> Called by [`genoverse.makeMenu`](#genoversemakemenufeatures--event-track-) to create a popup menu for a single feature
-> 
-> Argument | Type | Description
-> --- | --- | ---
-> feature | Feature object | The feature to make the menu for
-> event | [jQuery event](http://api.jquery.com/category/events/) or undefined | The click event that created the menu, used to position the menu at the mouse pointer
-> track | Genoverse.Track instance or undefined | The track which was clicked on
-
-#### genoverse.closeMenus([ track ])
-> See the [api documentation](/docs/api.md#genoverseclosemenus-track-)
 
 ## Misc
 
