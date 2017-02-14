@@ -182,6 +182,14 @@
 #### genoverse.sortTracks
 > Reorders the tracks' DOM elements based on each track's `order` property, lowest first.
 
+### Highlight interactions
+
+#### genoverse.addHighlights(highlights)
+> See the [api documentation](/docs/api.md#genoverseaddhighlightshighlights)
+
+#### genoverse.addHighlight(highlight)
+> See the [api documentation](/docs/api.md#genoverseaddhighlighthighlight)
+
 ### URL interactions
 
 #### genoverse.updateURL
@@ -218,3 +226,41 @@
 
 #### genoverse.closeMenus([ track ])
 > See the [api documentation](/docs/api.md#genoverseclosemenus-track-)
+
+### Misc
+
+#### genoverse.on()
+> See the [api documentation](/docs/api.md#genoverseonevents--ontracks--callback)
+
+#### genoverse.once()
+> See the [api documentation](/docs/api.md#genoverseonceevents--ontracks--callback)
+
+#### genoverse.reset()
+> See the [api documentation](/docs/api.md#genoversereset)
+
+#### genoverse.destroy()
+> See the [api documentation](/docs/api.md#genoversedestroy)
+
+#### genoverse.setWidth(width)
+> See the [api documentation](/docs/api.md#genoversesetwidthwidth)
+
+#### genoverse.getChromosomeSize(chr)
+> If [`genoverse.genome`](/docs/configuration.md#genome-default-undefined) is an object, returns the size of the chromosome in the genome, else returns [`genoverse.chromosomeSize`](/docs/configuration.md#chromosomesize-default-undefined)
+>
+> Argument | Type | Description
+> --- | --- | ---
+> chr | String | The name of the chromosome
+
+#### genoverse.getSelectorPosition()
+> Returns an object in the form `{ "start": 1, "end": 2, "left": 1, "width", 1 }` representing the position of the region selector DOM element.
+> `start` and `end` are the genomic coordinates selected by the region, `left` and `width` are the CSS positional values of the element.
+
+#### genoverse.onTracks(functionName [, arg1, arg2, ...argN ])
+> Calls the function `functionName` on all tracks in the instance of Genoverse, with the arguments provided
+>
+> Argument | Type | Description
+> --- | --- | ---
+> functionName | String | The name of the function to call. This function can be in `Genoverse.Track`, `Genoverse.Track.Controller`, `Genoverse.Track.Model`, or `Genoverse.Track.View`
+> args | Anything | A list of arguments to be passed to the function being called
+
+
