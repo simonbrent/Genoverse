@@ -208,7 +208,7 @@
 > track | Genoverse.Track or undefined | The track which was clicked on
 
 #### genoverse.makeFeatureMenu(features [, event, track ])
-> Called by [`genoverse.makeMenu`](#genoversemakemenu-features--event--track) to create a popup menu for a single feature
+> Called by [`genoverse.makeMenu`](#genoversemakemenufeatures--event-track-) to create a popup menu for a single feature
 > 
 > Argument | Type | Description
 > --- | --- | ---
