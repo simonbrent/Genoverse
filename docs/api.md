@@ -80,6 +80,14 @@ The following are methods that can be called on an instance of Genoverse or Geno
 > --- | --- | ---
 > action | `"zoom"` or `"off"` | The value which `genoverse.wheelAction` will be set to
 
+#### genoverse.closeMenus([ obj ])
+> If `obj` is a Genoverse.Track instance, closes (hides) all popup menus for that track. 
+> If `obj` is `undefined`, closes all popup menus.
+> 
+> Argument | Type | Description
+> --- | --- | ---
+> obj | Genoverse.Track instance or undefined | The object whose popup menus will be closed
+
 #### genoverse.on(events, [, onTracks ], callback)
 > Execute functions before or after Genoverse or Genoverse.Track functions
 >
