@@ -196,3 +196,25 @@
 #### genoverse.getQueryString
 > Returns a string of [`genoverse.urlParamTemplate`](/docs/configuration.md#urlparamtemplate-default-r__chr____start__-__end__) with the placeholders replaced with their relevant values, to be used in updating the URL. If [`genoverse.useHash`](/docs/configuration.md#usehash-default-undefined) is `false`, this will be appended to any existing value of `window.location.search` such that other parameters are unchanged.
 
+### Popup menus
+
+#### genoverse.makeMenu(features [, event, track ])
+> Creates a popup menu for one or more features. If more than one feature is provided, the popup will contain one link per feature which each create another popup for that feature
+> 
+> Argument | Type | Description
+> --- | --- | ---
+> features | Feature object or array of feature objects | The feature(s) to make the menu for
+> event | [jQuery event](http://api.jquery.com/category/events/) or undefined | The click event that created the menu, used to position the menu at the mouse pointer
+> track | Genoverse.Track or undefined | The track which was clicked on
+
+#### genoverse.makeFeatureMenu(features [, event, track ])
+> Called by [`genoverse.makeMenu`](#genoversemakemenu-features--event--track) to create a popup menu for a single feature
+> 
+> Argument | Type | Description
+> --- | --- | ---
+> feature | Feature object | The feature to make the menu for
+> event | [jQuery event](http://api.jquery.com/category/events/) or undefined | The click event that created the menu, used to position the menu at the mouse pointer
+> track | Genoverse.Track instance or undefined | The track which was clicked on
+
+#### genoverse.closeMenus([ track ])
+> See the [api documentation](/docs/api.md#genoverseclosemenus-track-)
