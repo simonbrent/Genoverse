@@ -12,7 +12,7 @@ The following are functions that exist in the Genoverse object. Any of these can
 >
 > Argument | Type | Description
 > --- | --- | ---
-> width | Integer | The width for the container DOM element (usually this should be the initial value of `genoverse.width`)
+> width | Integer | The width for the container DOM element (usually this should be the initial value of [`genoverse.width`](/docs/configuration.md#width-default-1000))
 
 #### genoverse.addUserEventHandlers()
 > Created the event handlers required for users to interact with the instance of Genoverse
@@ -20,13 +20,13 @@ The following are functions that exist in the Genoverse object. Any of these can
 ## Configuration
 
 #### genoverse.loadConfig()
-> If `genoverse.saveable` is `true`, configuration will be loaded from `window[genoverse.storageType].getItem(genoverse.saveKey)`. This configuration contains the user's previous tracks, their ordering, heights, and any other [track configuration settings](/docs/tracks/configuration.md#changing-track-settings). If no configuration exists, the default set of tracks will be used instead.
+> If [`genoverse.saveable`](/docs/configuration.md#saveable-default-false) is `true`, configuration will be loaded from `window[genoverse.storageType].getItem(genoverse.saveKey)`. This configuration contains the user's previous tracks, their ordering, heights, and any other [track configuration settings](/docs/tracks/configuration.md#changing-track-settings). If no configuration exists, the default set of tracks will be used instead.
 
 #### genoverse.saveConfig()
-> If `genoverse.saveable` is `true`, the user's current tracks, their ordering, heights, and any other [track configuration settings](/docs/tracks/configuration.md#changing-track-settings) will be saved to `window[genoverse.storageType].getItem(genoverse.saveKey)`.
+> If [`genoverse.saveable`](/docs/configuration.md#saveable-default-false) is `true`, the user's current tracks, their ordering, heights, and any other [track configuration settings](/docs/tracks/configuration.md#changing-track-settings) will be saved to `window[genoverse.storageType].getItem(genoverse.saveKey)`.
 
 #### genoverse.resetConfig()
-> If `genoverse.saveable` is `true`, removes all tracks and unremovable highlights, adds the default set of tracks, and removes the value in `genoverse.saveKey` from `window[genoverse.storageType]`.
+> If [`genoverse.saveable`](/docs/configuration.md#saveable-default-false) is `true`, removes all tracks and unremovable highlights, adds the default set of tracks, and removes the value in [`genoverse.saveKey`](/docs/configuration.md#savekey-default-empty-string) from `window[genoverse.storageType]`.
 
 ## Changing browser location
 
@@ -49,8 +49,8 @@ The following are functions that exist in the Genoverse object. Any of these can
 >
 > Argument | Type | Description
 > --- | --- | ---
-> start | Integer | A number between `1` and `genoverse.chromosomeSize`
-> end | Integer | A number between `start` and `genoverse.chromosomeSize`
+> start | Integer | A number between `1` and [`genoverse.chromosomeSize`](/docs/configuration.md#chromosomesize-default-undefined)
+> end | Integer | A number between `start` and [`genoverse.chromosomeSize`](/docs/configuration.md#chromosomesize-default-undefined)
 > update | Boolean or undefined | If `true`, the URL will be updated with the new `start` and `end`
 > keepLength | Boolean or undefined | if `true`, the new viewpoint will have the same zoom level as before (`end - start` remains unchanged), centered on the given `start` and `end`.
 
@@ -90,7 +90,7 @@ The following are functions that exist in the Genoverse object. Any of these can
 ## URL interactions
 
 #### genoverse.updateURL
-> If [`genoverse.urlParamTemplate`](/docs/configuration.md#urlparamtemplate-default-r__chr____start__-__end__) is set, the URL will be updated to reflect the current browser region. This will be done either by using `window.history.pushState`, or by updating `window.location.hash`, depending on the value of [`genoverse.useHash`](/docs/configuration.md#usehash-default-undefined).
+> If [`genoverse.urlParamTemplate`](/docs/configuration.md#urlparamtemplate-default-r__chr____start__-__end__) is set, the URL will be updated to reflect the current browser region. This will be done either by using [`window.history.pushState`](https://developer.mozilla.org/en-US/docs/Web/API/History_API#The_pushState()_method), or by updating `window.location.hash`, depending on the value of [`genoverse.useHash`](/docs/configuration.md#usehash-default-undefined).
 
 #### genoverse.popState
 > Called by [`window.onpopstate`](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate) or [`window.onhashchange`](https://developer.mozilla.org/en/docs/Web/API/WindowEventHandlers/onhashchange) to update the browser region if the user uses the back or forward buttons in their web browser.
