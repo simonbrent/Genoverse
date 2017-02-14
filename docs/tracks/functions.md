@@ -93,6 +93,7 @@ The following functions are called during track creation and do not have before/
 
 #### track.addLegend([ config, class ])
 > Creates a `Genoverse.Track.Legend` instance for the track, adding it to the browser.
+>
 > Argument | Type | Description
 > --- | --- | ---
 > config | Object or `undefined` | Properties to be given to the legend class constructor
