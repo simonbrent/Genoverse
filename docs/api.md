@@ -105,6 +105,12 @@ The following are methods that can be called on an instance of Genoverse or Geno
 > events | Object | An object whose keys are one or more space-separated events (see above), and whose values are the functions to be executed for those events
 > onTracks | `"tracks"` or `Genoverse.Track` instance | See above
 
+#### genoverse.once(events, [, onTracks ], callback)
+> Like [`genoverse.on`](#genoverseonevents--ontracks--callback), but the functions will only be called one time
+
+#### genoverse.once(events, [, onTracks ])
+> Like [`genoverse.on`](#genoverseonevents--ontracks-), but the functions will only be called one time
+
 #### genoverse.reset()
 > Removes all existing data visualizations, and recreates them
 
