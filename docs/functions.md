@@ -20,13 +20,13 @@ The following are functions that exist in the Genoverse object. Any of these can
 ## Configuration
 
 #### genoverse.loadConfig()
-> If [`genoverse.saveable`](/docs/configuration.md#saveable-default-false) is `true`, configuration will be loaded from `window[genoverse.storageType].getItem(genoverse.saveKey)`. This configuration contains the user's previous tracks, their ordering, heights, and any other [track configuration settings](/docs/tracks/configuration.md#changing-track-settings). If no configuration exists, the default set of tracks will be used instead.
+> If [`genoverse.saveable`](/docs/configuration.md#saveable-default-false) is `true`, configuration will be loaded from `window[`[`genoverse.storageType`](/docs/configuration.md#storagetype-default-sessionstorage)`].getItem(`[`genoverse.saveKey`](/docs/configuration.md#savekey-default-empty-string)`)`. This configuration contains the user's previous tracks, their ordering, heights, and any other [track configuration settings](/docs/tracks/configuration.md#changing-track-settings). If no configuration exists, the default set of tracks will be used instead.
 
 #### genoverse.saveConfig()
-> If [`genoverse.saveable`](/docs/configuration.md#saveable-default-false) is `true`, the user's current tracks, their ordering, heights, and any other [track configuration settings](/docs/tracks/configuration.md#changing-track-settings) will be saved to `window[genoverse.storageType].getItem(genoverse.saveKey)`.
+> If [`genoverse.saveable`](/docs/configuration.md#saveable-default-false) is `true`, the user's current tracks, their ordering, heights, and any other [track configuration settings](/docs/tracks/configuration.md#changing-track-settings) will be saved to `window[`[`genoverse.storageType`](/docs/configuration.md#storagetype-default-sessionstorage)`].getItem(`[`genoverse.saveKey`](/docs/configuration.md#savekey-default-empty-string)`)`.
 
 #### genoverse.resetConfig()
-> If [`genoverse.saveable`](/docs/configuration.md#saveable-default-false) is `true`, removes all tracks and unremovable highlights, adds the default set of tracks, and removes the value in [`genoverse.saveKey`](/docs/configuration.md#savekey-default-empty-string) from `window[genoverse.storageType]`.
+> If [`genoverse.saveable`](/docs/configuration.md#saveable-default-false) is `true`, removes all tracks and unremovable highlights, adds the default set of tracks, and removes the value in [`genoverse.saveKey`](/docs/configuration.md#savekey-default-empty-string) from `window[`[`genoverse.storageType`](/docs/configuration.md#storagetype-default-sessionstorage)`]`.
 
 ## Changing browser location
 
