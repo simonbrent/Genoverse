@@ -11,7 +11,7 @@ var genoverse = new Genoverse({
 
 The following properties can be provided to the constructor for Genoverse:
 
-### DOM element
+## DOM element
 
 #### container (default `undefined`)
 > A DOM node, jQuery selector, or string to create a jQuery selector (e.g. `"#genoverse"`) inside which the instance of Genoverse will be created. 
@@ -47,7 +47,7 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 >
 > If `genome` is provided, `chromosomeSize` will be set to the chromosome's `size` property, as defined by the genome object.
 
-### What is displayed
+## What is displayed
 
 #### tracks (default `[]`)
 > An array of `Genoverse.Track` definitions to be displayed
@@ -68,7 +68,7 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 ```
 > The strings in this array correspond to the namespace of each plugin, which are the same as their file names. 
 
-### Interaction with the URL
+## Interaction with the URL
 
 #### urlParamTemplate (default `"r=__CHR__:__START__-__END__"`)
 > The template used to alter the web browser's URL. Should contain placeholders for chr, start and end.
@@ -82,7 +82,7 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 > - `false` - use `window.history.pushState`
 > - `undefined` - use `window.history.pushState` if present in the browser, else use `window.location.hash`
 
-### User actions
+## User actions
 
 #### dragAction (default `"scroll"`) 
 > The action performed when a mouse drag happens on the genome browser. Can be:
@@ -100,7 +100,7 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 #### isStatic (default `false`)
 > If `true`, will stop drag, select and zoom actions occurring
 
-### Saving user configurations
+## Saving user configurations
 
 #### saveable (default `false`)
 > If `true`, track configuration and ordering will be saved in `window.sessionStorage`/`window.localStorage` (defined by `storageType`, below) so that users will see the same display when they refresh the page
@@ -113,7 +113,7 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 #### saveKey (default empty string)
 > The default key used in configuration storage is `"genoverse"`. `saveKey` will be appended to this to allow different configurations for different instances of Genoverse.
 
-### Default track display settings
+## Default track display settings
 
 #### autoHideMessages (default `true`)
 > Determines whether to collapse track messages (toggleable pop-outs on the left side of a track's image)  by default when the user interacts with the genome browser
