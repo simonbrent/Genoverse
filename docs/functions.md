@@ -1,6 +1,6 @@
 # Genoverse functions
 
-The following are functions that exist in the Genoverse object. Any of these can be overwritten by supplying them as properties in configuration, or have before/after events added to them.
+The following are functions that exist in the Genoverse object. Any of these can have before/after events added to them, or be overwritten by supplying them as properties in configuration.
 
 ## Initialization 
 
