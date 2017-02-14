@@ -20,7 +20,7 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 #### width (default `1000`)
 > The width that the `container` DOM element will be
 
-### Genomic coordinates
+## Genomic coordinates
 
 #### chr (default `1`)
 > A string or number defining the initial chromosome to display
