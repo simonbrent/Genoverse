@@ -1,8 +1,10 @@
 # Plugins
 
-The `Genoverse.Plugins` namespace contains a set of plugins to extend the core functionality of Genoverse.
+Genoverse browser provides constitutive core functionality. `Genoverse.Plugins` namespace contains a set of optional, additional pieces of functionality - plugins - some projects may need and others might not.
 
-These plugins, located in the [js/plugins](https://github.com/wtsi-web/Genoverse/tree/gh-pages/js/plugins) directory, are as follows:
+Genoverse can asynchronously load plugins from its [js/plugins](https://github.com/wtsi-web/Genoverse/tree/gh-pages/js/plugins) directory on your server itself. Or you may explicitly import plugins in your html with, for example, `<script src="Genoverse/js/plugins/controlPanel.js">` for slightly faster load times.
+
+## List of plugins:
 
 ### controlPanel
 Adds
