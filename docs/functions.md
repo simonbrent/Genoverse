@@ -15,7 +15,7 @@ The following are functions that exist in the Genoverse object. Any of these can
 > width | Integer | The width for the container DOM element (usually this should be the initial value of [`genoverse.width`](/docs/configuration.md#width-default-1000))
 
 #### genoverse.addUserEventHandlers()
-> Created the event handlers required for users to interact with the instance of Genoverse
+> Creates the event handlers required for users to interact with the instance of Genoverse
 
 ## Configuration
 
@@ -264,5 +264,3 @@ The following are functions that exist in the Genoverse object. Any of these can
 > --- | --- | ---
 > functionName | String | The name of the function to call. This function can be in `Genoverse.Track`, `Genoverse.Track.Controller`, `Genoverse.Track.Model`, or `Genoverse.Track.View`
 > args | Anything | A list of arguments to be passed to the function being called
-
-
