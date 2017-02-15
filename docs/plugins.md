@@ -4,7 +4,7 @@ Genoverse browser provides constitutive core functionality. `Genoverse.Plugins` 
 
 Genoverse can asynchronously load plugins from its [js/plugins](https://github.com/wtsi-web/Genoverse/tree/gh-pages/js/plugins) directory on your server itself. Or you may explicitly import plugins in your html with, for example, `<script src="Genoverse/js/plugins/controlPanel.js">` for slightly faster load times.
 
-## List of plugins:
+## List of plugins
 
 ### controlPanel
 Adds
