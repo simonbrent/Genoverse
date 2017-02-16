@@ -82,7 +82,7 @@ The following are functions that exist in the `Genoverse.Track.Model` object. An
 > end | Integer | The end of the region to check
 
 #### model.findFeatures(chr, start, end)
-> Returns an array of [sorted](#modelsortfeaturesfeatures) features stored in the `features` RTree for the given `chr`
+> Returns an array of [sorted](#modelsortfeaturesfeatures) features stored in the `features` RTree for the given `chr`. If the track has any [`featureFilters`](/docs/tracks.md#allowing-a-user-to-change-a-tracks-configuration), the returned array will only contain those features which pass all of the filters.
 > 
 > Argument | Type | Description
 > --- | --- | ---
