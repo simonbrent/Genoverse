@@ -31,6 +31,7 @@ The following are functions that exist in the `Genoverse.Track.Model` object. An
 
 #### model.getData(chr, start, end [, done ])
 > Makes [jQuery.ajax](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings) request(s) to get data for the given genomic region (multiple requests may be made if [`dataRequestLimit`](/docs/tracks/configuration.md#datarequestlimit-default-undefined) is set.
+>
 > Returns a [jQuery deferred object](http://api.jquery.com/category/deferred-object/) which is resolved when all of the jQuery.ajax requests are complete.
 > 
 > Argument | Type | Description
@@ -92,6 +93,7 @@ The following are functions that exist in the `Genoverse.Track.Model` object. An
 
 #### model.sortFeatures(features)
 > Sorts an array of features based on their `sort` property, lowest first. By default the value of `sort` is the feature's `start` + the index of the feature in the data array received by [`model.parseData`](#modelparsedatadata-chr-start-end). This means that features are sorted by lowest start, with tie-breaking based on the original data source's ordering.
+>
 > This function can be overwritten to sort on different criteria.
 >
 > Argument | Type | Description
