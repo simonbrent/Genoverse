@@ -110,7 +110,7 @@ The following are functions that exist in the Genoverse object. Any of these can
 > --- | --- | ---
 > features | Feature object or array of feature objects | The feature(s) to make the menu for
 > event | [jQuery event](http://api.jquery.com/category/events/) or undefined | The click event that created the menu, used to position the menu at the mouse pointer
-> track | Genoverse.Track or undefined | The track which was clicked on
+> track | `Genoverse.Track` instance or undefined | The track which was clicked on
 
 #### genoverse.makeFeatureMenu(features [, event, track ])
 > Called by [`genoverse.makeMenu`](#genoversemakemenufeatures--event-track-) to create a popup menu for a single feature
@@ -119,7 +119,7 @@ The following are functions that exist in the Genoverse object. Any of these can
 > --- | --- | ---
 > feature | Feature object | The feature to make the menu for
 > event | [jQuery event](http://api.jquery.com/category/events/) or undefined | The click event that created the menu, used to position the menu at the mouse pointer
-> track | Genoverse.Track instance or undefined | The track which was clicked on
+> track | `Genoverse.Track` instance or undefined | The track which was clicked on
 
 #### genoverse.closeMenus([ track ])
 > See the [api documentation](/docs/api.md#genoverseclosemenus-track-)
