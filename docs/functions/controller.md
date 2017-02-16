@@ -95,6 +95,7 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 
 #### controller.makeImage(params)
 > Creates an image DOM element and adds it to the track. Calls [`model.getData`](/docs/functions/model.md#modelgetdatachr-start-end--done-) to get features to be drawn on the new image, and then [`controller.render`](#controllerrenderfeatures-img) to draw them on the image.
+>
 > Returns a [jQuery deferred object](http://api.jquery.com/category/deferred-object/) which is resolved once the data for the image has been retrieved.
 >
 > Argument | Type | Description
@@ -127,6 +128,7 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 > Returns an object for use in [`genoverse.makeFeatureMenu`](/docs/functions/genoverse.md#genoversemakefeaturemenufeatures--event-track-), defining the contents of the feature's popup menu.
 >
 > For example, consider a variation feature where the popup needs to contain information about the location and alleles. `populateMenu` could return an object as follows:
+>
 > ```
 > {
 >   "Location": "1:100-101",
@@ -134,6 +136,7 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 >   "Alternative allele": "TG"
 > }
 > ```
+>
 > The would create a popup with these three attributes, in the order they are defined in the object. Note that the keys and values of the object are displayed in the popup unmodified, so case is important, and both keys and values can contain HTML.
 >
 > The popup is created using a table element, with keys in the first column and values in the second. In order to create rows in the table where content can span both columns, a key whose value is an empty string can be given.
@@ -141,6 +144,7 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 > There is one special reserved key: `title` is used to set the value of the popup's title element (the bar at the top of the popup).
 >
 > Expanding on the example above, the final return value could be:
+>
 >```
 > {
 >   "title": "A variant",
