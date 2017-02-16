@@ -63,6 +63,9 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 #### allData (default `false`)
 > If `true`, the initial request for data is assumed to contain all the track's data for the current chromosome. No subsequent requests will be made as the user navigates the genome.
 
+#### dataRequestLimit (default `undefined`)
+> The maximum region size to request data for, if any. If defined as a number, multiple [jQuery.ajax](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings) requests will be made to get data for a region size which exceeds its value.
+
 #### dataType (default `"json"`)
 > The dataType setting to be used in the [jQuery.ajax](http://api.jquery.com/jQuery.ajax/#jQuery-ajax-settings) requests to get data for the track
 
