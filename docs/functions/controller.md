@@ -94,7 +94,7 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 ## Creating images
 
 #### controller.makeImage(params)
-> Creates an image DOM element and adds it to the track. Calls [`model.getData`](/docs/functions/model.md#modelgetdatachrstartend--done-) to get features to be drawn on the new image, and then [`controller.render`](#controllerrenderfeaturesimg) to draw them on the image.
+> Creates an image DOM element and adds it to the track. Calls [`model.getData`](/docs/functions/model.md#modelgetdatachr-start-end--done-) to get features to be drawn on the new image, and then [`controller.render`](#controllerrenderfeatures-img) to draw them on the image.
 > Returns a [jQuery deferred object](http://api.jquery.com/category/deferred-object/) which is resolved once the data for the image has been retrieved.
 >
 > Argument | Type | Description
@@ -152,7 +152,7 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 > }
 >```
 >
-> Finally, instead of a plain object, `populateMenu` can return a [jQuery deferred object](http://api.jquery.com/category/deferred-object/). This allows an AJAX request to be used to get further information for the popup which isn't included in the feature. This can be used to speed up requests made by [`model.getData`](/docs/functions/model.md#modelgetdatachrstartend--done-), as only the essential positional properties of a feature are needed to draw it, and extra details can be obtained later. This deferred object must be resolved with a plain object argument, as detailed above, for example:
+> Finally, instead of a plain object, `populateMenu` can return a [jQuery deferred object](http://api.jquery.com/category/deferred-object/). This allows an AJAX request to be used to get further information for the popup which isn't included in the feature. This can be used to speed up requests made by [`model.getData`](/docs/functions/model.md#modelgetdatachr-start-end--done-), as only the essential positional properties of a feature are needed to draw it, and extra details can be obtained later. This deferred object must be resolved with a plain object argument, as detailed above, for example:
 >
 >```
 > populateMenu: function (feature) {
