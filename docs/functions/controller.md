@@ -50,14 +50,14 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 
 #### controller.hideMessage([ code ])
 > Removes a message or messages from the track. This is different from the user action of minimizing a message pop-out - the pop-out will no longer appear at all.
-> 
+>
 > Argument | Type | Description
 > --- | --- | ---
 > code | String or `undefined` | The code of the message to hide. Default message codes are `"error"`, `"threshold"` or `"resize"`. If `undefined`, all of the track's messages are hidden.
 
 #### controller.showError(error)
-> Shows an error message for the track by calling [`controller.showMessage("error", error)`](#controllershowmessagecode--additionaltext-) 
-> 
+> Shows an error message for the track by calling [`controller.showMessage("error", error)`](#controllershowmessagecode--additionaltext-)
+>
 > Argument | Type | Description
 > --- | --- | ---
 > error | String | Extra text to append to the error message as defined by `this.messages.error`
@@ -65,14 +65,14 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 ## Track height changes
 
 #### controller.checkHeight()
-> Determines whether the track needs to be resized, either because the browser region size exceeds the track's [`threshold`](/tracks/configuration.md#threshold-default-infinity), or because the track is [`autoHeight`](/tracks/configuration.md#autoheight-default-undefined) and the features in view take up a different amount of vertical space to the current height of the track's image.
+> Determines whether the track needs to be resized, either because the browser region size exceeds the track's [`threshold`](/docs/tracks/configuration.md#threshold-default-infinity), or because the track is [`autoHeight`](/docs/tracks/configuration.md#autoheight-default-undefined) and the features in view take up a different amount of vertical space to the current height of the track's image.
 
 #### controller.autoResize()
-> If the track is [`autoHeight`](/tracks/configuration.md#autoheight-default-undefined), calls [`controller.resize`](#controllerresizeheight--forecshow-saveconfig-), otherwise calls [`controller.toggleExpander`](#controllertoggleexpandersaveconfig)
+> If the track is [`autoHeight`](/docs/tracks/configuration.md#autoheight-default-undefined), calls [`controller.resize`](#controllerresizeheight--forecshow-saveconfig-), otherwise calls [`controller.toggleExpander`](#controllertoggleexpandersaveconfig)
 
 #### controller.resize(height [, forceShow, saveConfig ])
 > Changes the height of the track's DOM elements
-> 
+>
 > Argument | Type | Description
 > --- | --- | ---
 > height | Integer | The new height for the track's DOM elements
@@ -81,7 +81,7 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 
 #### controller.resize(height [, top, saveConfig ])
 > Changes the height of the track's DOM elements
-> 
+>
 > Argument | Type | Description
 > --- | --- | ---
 > height | Integer | The new height for the track's DOM elements
@@ -125,7 +125,7 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 
 #### controller.populateMenu(feature)
 > Returns an object for use in [`genoverse.makeFeatureMenu`](/docs/functions/genoverse.md#genoversemakefeaturemenufeatures--event-track-), defining the contents of the feature's popup menu.
-> 
+>
 > For example, consider a variation feature where the popup needs to contain information about the location and alleles. `populateMenu` could return an object as follows:
 > ```
 > {
@@ -134,10 +134,10 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 >   "Alternative allele": "TG"
 > }
 > ```
-> The would create a popup with these three attributes, in the order they are defined in the object. Note that the keys and values of the object are displayed in the popup unmodified, so case is important, and both keys and values can contain HTML. 
-> 
+> The would create a popup with these three attributes, in the order they are defined in the object. Note that the keys and values of the object are displayed in the popup unmodified, so case is important, and both keys and values can contain HTML.
+>
 > The popup is created using a table element, with keys in the first column and values in the second. In order to create rows in the table where content can span both columns, a key whose value is an empty string can be given.
-> 
+>
 > There is one special reserved key: `title` is used to set the value of the popup's title element (the bar at the top of the popup).
 >
 > Expanding on the example above, the final return value could be:
@@ -165,10 +165,10 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 >       deferred.resolve(menu);
 >     }
 >   });
->  
+>
 >   return deferred;
 > }
->``` 
+>```
 >
 > Argument | Type | Description
 > --- | --- | ---
