@@ -1,11 +1,11 @@
 # Genoverse.Track.Controller functions
 
-The following are functions that exist in the `Genoverse.Track.Controller` object. Any of these can have before/after hooks added to them, or be overwritten by supplying them as properties in configuration.
+The following are functions that exist in the `Genoverse.Track.Controller` object. Any of these can have before/after hooks added to them unless otherwise specified, or be overwritten by supplying them as properties in configuration.
 
 ## Initialization
 
-#### controller.init()
-> Called once the controller instance is created. Sets initial properties of the instance and calls functions to creates its DOM elements, and event handlers.
+#### controller.setDefaults()
+> Sets initial properties of the instance. Does not have before/after hooks.
 
 #### controller.addDomElements()
 > Creates the DOM elements required by the track
