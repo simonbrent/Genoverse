@@ -7,6 +7,7 @@ The following are functions that exist in the `Genoverse.Track.View` object. Any
 
 #### view.setScaleSettings(scale)
 > Creates a `featurePositions` RTree for the current chromosome and given `scale`.
+>
 > If [`labels = "separate"`](/docs/tracks/configuration.md#labels-default-true), a `labelPositions` RTree is also created.
 > 
 > Argument | Type | Description
@@ -15,6 +16,7 @@ The following are functions that exist in the `Genoverse.Track.View` object. Any
 
 #### view.scaleFeatures(features, scale)
 > For each feature, adds a `feature.position[scale]` property, containing the height of the feature and its scaled start and width. This property is used to determine where on the image the feature will be drawn.
+>
 > Returns the features.
 > 
 > Argument | Type | Description
@@ -24,6 +26,7 @@ The following are functions that exist in the `Genoverse.Track.View` object. Any
 
 #### view.positionFeatures(features, params)
 > Calls [`view.positionFeature`](#viewpositionfeaturefeature-params) for each feature given.
+>
 > Returns the features.
 > 
 > Argument | Type | Description
@@ -41,8 +44,11 @@ The following are functions that exist in the `Genoverse.Track.View` object. Any
 
 #### view.bumpFeature(bounds, feature, scale, tree)
 > If [`bump`](/docs/tracks/configuration.md#bump-default-false) is set, features are moved vertically within the track so that the do not overlap horizontally. This is referred to as "bumping".
+>
 > The [`featurePositions`](#viewsetscalesettingsscale) RTree is searched for the given `bounds` to discover if it contains another feature in the position. If there is, the given `bounds`' y coordinate is updated such that it doesn't overlap with the found feature any more. 
+>
 > This process is done in a loop until searching the RTree for `bounds` no longer finds any features, at which point the given `feature`'s y coordinate is updated to the value of `bounds.y`. 
+>
 > The nature of this process means that it can be quite slow for feature-dense regions. A [`depth`](/docs/tracks/configuration.md#depth-default-undefined) cut-off can be specified to limit the maximum number of iterations, but any features which would need to exceed that limit will not be displayed on the image (they will have a `visible` property set to `false`).
 > 
 > Argument | Type | Description
@@ -65,7 +71,8 @@ The following are functions that exist in the `Genoverse.Track.View` object. Any
 
 #### view.drawBackground(features, context, params)
 > Can be used like [`view.draw`](#viewdrawfeatures-featurecontext-labelcontext-scale) to draw a [background image](/docs/functions/controller.md#controllerrenderbackgroundfeatures-img--height-) for a track. 
-> By default does nothing.
+>
+> By default does nothing - must be implemented.
 > 
 > Argument | Type | Description
 > --- | --- | ---
@@ -75,7 +82,9 @@ The following are functions that exist in the `Genoverse.Track.View` object. Any
 
 #### view.drawFeature(feature, featureContext, labelContext, scale)
 > Uses the [Canvas 2D rendering context](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D) to draw a feature on the `featureContext` canvas.
+>
 > Calls [`view.drawLabel`](#viewdrawlabelfeature-context-scale) if the feature has a label and [`labels`](/docs/tracks/configuration.md#labels-default-true) are being displayed.
+>
 > Calls [`view.decorateFeatures`](#viewdecoratefeaturefeature-context-scale) if `feature.decorations` is present.
 > 
 > Argument | Type | Description
@@ -110,6 +119,7 @@ The following are functions that exist in the `Genoverse.Track.View` object. Any
 
 #### view.truncateForDrawing(feature)
 > If a feature extends beyond the edge of the canvas, makes it start and end at 1px outside the canvas to reduce unnecessary drawing operations.
+>
 > Uses 1px outside rather than on the edges of the canvas in order to stop feature borders being erroneously included in an image (a border will be drawn at the start/end of a feature, meaning that a feature which ends at the end of a canvas will have a vertical border inside the canvas).
 > 
 > Argument | Type | Description
@@ -118,7 +128,8 @@ The following are functions that exist in the `Genoverse.Track.View` object. Any
 
 #### view.decorateFeature(feature, featureContext, scale)
 > Called by [`view.drawFeature`](#viewdrawfeaturefeature-featurecontext-labelcontext-scale) if `feature.decorations` is present. By default, [`view.drawFeature`](#viewdrawfeaturefeature-featurecontext-labelcontext-scale) draws features as rectangles. This function can be used to add other shapes if necessary, positioning them based on `feature.position[scale]`.
-> By default does nothing.
+>
+> By default does nothing - must be implemented.
 >
 > Argument | Type | Description
 > --- | --- | ---
