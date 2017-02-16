@@ -1,5 +1,7 @@
 # Genoverse.Track functions
 
+The following are functions that exist in the `Genoverse.Track` object. Any of these can have before/after hooks added to them unless otherwise specified, or be overwritten by supplying them as properties in configuration.
+
 ## Initialization
 
 The following functions are called during track creation and do not have before/after hooks.
