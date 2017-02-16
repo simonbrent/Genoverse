@@ -82,6 +82,7 @@ The following are methods that can be called on an instance of Genoverse or Geno
 
 #### genoverse.closeMenus([ track ])
 > If `track` is a Genoverse.Track instance, closes (hides) all popup menus for that track. 
+>
 > If `track` is `undefined`, closes all popup menus.
 > 
 > Argument | Type | Description
