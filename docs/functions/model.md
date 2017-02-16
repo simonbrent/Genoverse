@@ -1,6 +1,6 @@
 # Genoverse.Track.Model functions
 
-The following are functions that exist in the Genoverse.Track.Model object. Any of these can have before/after hooks added to them, or be overwritten by supplying them as properties in configuration.
+The following are functions that exist in the `Genoverse.Track.Model` object. Any of these can have before/after hooks added to them, or be overwritten by supplying them as properties in configuration.
 
 #### model.init()
 > Called once the model instance is created. Sets initial properties of the instance.
