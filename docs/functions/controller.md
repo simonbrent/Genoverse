@@ -105,7 +105,7 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 > Called when a track is created or when the browser's scale changes to create three image DOM elements and adds them to the track by calling [`controller.makeImage`](#controllermakeimageparams). One image covers the browser region, one covers the region to the left, and the other covers the region to the right. This allows the user to scroll away from the initial region without the immediate need to request more data and draw new images.
 
 #### controller.render(features, img)
-> Creates a canvas DOM element and calls [`view.draw`](/docs/functions/view.md#viewdrawfeaturesfeaturecontextlabelcontextscale) to draw features on it. Once this is done, the `src` attribute of the image DOM element is set to the [canvas' data url](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL). The canvas element is never added to the DOM.
+> Creates a canvas DOM element and calls [`view.draw`](/docs/functions/view.md#viewdrawfeatures-featurecontext-labelcontext-scale) to draw features on it. Once this is done, the `src` attribute of the image DOM element is set to the [canvas' data url](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL). The canvas element is never added to the DOM.
 >
 > Argument | Type | Description
 > --- | --- | ---
@@ -113,7 +113,7 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 > img | [jQuery selector](http://api.jquery.com/category/selectors/) | The image element to be drawn
 
 #### controller.renderBackground(features, img [, height ])
-> Like [`controller.render`](#controllerrenderfeaturesimg), but for drawing background images for a track. An example of this is the `Genoverse.Track.Scalebar` track, where a background image is used for the vertical grey lines which extend the whole height of the browser.
+> Like [`controller.render`](#controllerrenderfeatures-img), but for drawing background images for a track. An example of this is the `Genoverse.Track.Scalebar` track, where a background image is used for the vertical grey lines which extend the whole height of the browser.
 >
 > Argument | Type | Description
 > --- | --- | ---
