@@ -102,7 +102,7 @@ The following are functions that exist in the `Genoverse.Track.View` object. Any
 > feature | Object | The feature whose `color` will be set
 
 #### view.setLabelColor(feature)
-> Sets `feature.labelColor` to [`view.fontColor`](/docs/tracks/configuration.md#fontcolor-default-undefined), `feature.color`, or [`view.color`](/docs/tracks/configuration.md#color-default-000000). Called by  [`view.drawLabel`](#viewdrawlabelfeature-context-scale) for features which don't have a `labelColor` property.
+> Sets `feature.labelColor` to [`view.fontColor`](/docs/tracks/configuration.md#fontcolor-default-undefined), `feature.color`, or [`view.color`](/docs/tracks/configuration.md#color-default-000000). Called by  [`view.drawLabel`](#viewdrawlabelfeature-labelcontext-scale) for features which don't have a `labelColor` property.
 > 
 > Argument | Type | Description
 > --- | --- | ---
