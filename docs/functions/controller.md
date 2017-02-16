@@ -68,7 +68,7 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 > Determines whether the track needs to be resized, either because the browser region size exceeds the track's [`threshold`](/docs/tracks/configuration.md#threshold-default-infinity), or because the track is [`autoHeight`](/docs/tracks/configuration.md#autoheight-default-undefined) and the features in view take up a different amount of vertical space to the current height of the track's image.
 
 #### controller.autoResize()
-> If the track is [`autoHeight`](/docs/tracks/configuration.md#autoheight-default-undefined), calls [`controller.resize`](#controllerresizeheight--forecshow-saveconfig-), otherwise calls [`controller.toggleExpander`](#controllertoggleexpandersaveconfig)
+> If the track is [`autoHeight`](/docs/tracks/configuration.md#autoheight-default-undefined), calls [`controller.resize`](#controllerresizeheight--forceshow-saveconfig-), otherwise calls [`controller.toggleExpander`](#controllertoggleexpander)
 
 #### controller.resize(height [, forceShow, saveConfig ])
 > Changes the height of the track's DOM elements
