@@ -16,7 +16,8 @@ The following functions are called during track creation and do not have before/
 > If [`track.defaultConfig`](/docs/tracks/configuration.md#defaultconfig-default-undefined) is defined, uses it to set the current config, and add the correct settings to the track
 
 #### track.setEvents()
-> Can be used to add events to the instance of Genoverse with [`genoverse.on`](/docs/api.md#genoverseonevents--ontracks--callback) if required by a particular type of track. By default does nothing.
+> Can be used to add events to the instance of Genoverse with [`genoverse.on`](/docs/api.md#genoverseonevents--ontracks--callback) if required by a particular type of track. 
+> By default does nothing.
 
 ## [MVC interactions](/docs/tracks.md#multiple-models-and-views)
 
