@@ -92,7 +92,7 @@ If `undefined`, a `<div>` element will be appended to `document.body`.
 >  - `"off"`    - Do nothing
 
 #### wheelAction (default `"off"`) 
-> The action performed when a wheel spin happens on the genome browser. Can be:
+> The action performed when a mouse wheel zoom happens on the genome browser. Can be:
 >
 >  - `"zoom"` - Zoom in or out
 >  - `"off"`    - Do nothing
