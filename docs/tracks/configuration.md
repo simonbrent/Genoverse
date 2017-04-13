@@ -31,6 +31,9 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 > - `false` - the track will be displayed if there are no features in view 
 > - `undefined` - the track will use [`genoverse.hideEmptyTracks`](/docs/configuration.md#hideemptytracks-default-true) to set `track.hideEmpty`
 
+#### invert (default `false`)
+> If `true`, features are drawn from bottom of the track image, up, rather than from the top, down. This can be used to draw, for example, histograms with rising bars. The inversion is actually achieved by performing a CSS transform on the track's image container DOM element, rather than by performing different logic when positioning the features for drawing.
+
 #### margin (default `2`)
 > The whitespace in pixels between this track and the one below it in the genome browser. This will appear as extra pixels in height at the bottom of the track.
 
