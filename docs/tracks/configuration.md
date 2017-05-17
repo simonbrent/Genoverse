@@ -43,6 +43,9 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 #### unsortable (default `false`)
 > If `true`, the track cannot be moved by the user. If `false`, a drag handle will appear next to the track's name, allowing the user to change its vertical position within the genome browser.
 
+#### legend (default `false`)
+> If `Genoverse.Track.Legend`, `Genoverse.Track.Legend.extend({ ... legend config ... })`, or a child class of `Genoverse.Track.Legend`, a legend will be added to the track, as defind by this value.
+
 ## Fetching data
 
 #### url (default `undefined`)
