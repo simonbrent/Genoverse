@@ -102,13 +102,8 @@ The following functions are called during track creation and do not have before/
 #### track.resetHeight()
 > See the [api documentation](/docs/api.md#trackresetheight)
 
-#### track.addLegend([ config, class ])
-> Creates a `Genoverse.Track.Legend` instance for the track, adding it to the browser.
->
-> Argument | Type | Description
-> --- | --- | ---
-> config | Object or `undefined` | Properties to be given to the legend class constructor
-> class | Child class of `Genoverse.Track.Legend` or `undefined` | The class to be used for the legend. Defaults to `Genoverse.Track.Legend`.
+#### track.addLegend()
+> Creates a `Genoverse.Track.Legend` instance for the track, based on [`track.legend`](/docs/tracks/configuration.md#legend-default-false), adding it to the browser.
 
 #### track.updateName(name)
 > See the [api documentation](/docs/api.md#trackupdatenamename)
