@@ -67,6 +67,9 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 #### controller.checkHeight()
 > Determines whether the track needs to be resized, either because the browser region size exceeds the track's [`threshold`](/docs/tracks/configuration.md#threshold-default-infinity), or because the track is [`autoHeight`](/docs/tracks/configuration.md#autoheight-default-undefined) and the features in view take up a different amount of vertical space to the current height of the track's image.
 
+#### controller.visibleFeatureHeight()
+> Returns the height required to display all of the features of the track in the current browser region. If there are no features in this region, returns 0 if [`track.hideEmpty`](/docs/tracks/configuration.md#hideempty-default-undefined) is `true`, or the height required to display the track's [`name`](/docs/tracks/configuration.md#name-default-undefined) if not.
+
 #### controller.autoResize()
 > If the track is [`autoHeight`](/docs/tracks/configuration.md#autoheight-default-undefined), calls [`controller.resize`](#controllerresizeheight--forceshow-saveconfig-), otherwise calls [`controller.toggleExpander`](#controllertoggleexpander)
 
@@ -104,6 +107,8 @@ The following are functions that exist in the `Genoverse.Track.Controller` objec
 
 #### controller.makeFirstImage()
 > Called when a track is created or when the browser's scale changes to create three image DOM elements and adds them to the track by calling [`controller.makeImage`](#controllermakeimageparams). One image covers the browser region, one covers the region to the left, and the other covers the region to the right. This allows the user to scroll away from the initial region without the immediate need to request more data and draw new images.
+>
+> Returns a [jQuery deferred object](http://api.jquery.com/category/deferred-object/) which is resolved once the deferred objects from each call to [`controller.makeImage`](#controllermakeimageparams) have been resolved, i.e. once all the images have been drawn.
 
 #### controller.render(features, img)
 > Creates a canvas DOM element and calls [`view.draw`](/docs/functions/view.md#viewdrawfeatures-featurecontext-labelcontext-scale) to draw features on it. Once this is done, the `src` attribute of the image DOM element is set to the [canvas' data url](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL). The canvas element is never added to the DOM.
