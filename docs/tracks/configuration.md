@@ -25,7 +25,7 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 > - `undefined` - the track will use [`genoverse.trackAutoHeight`](/docs/configuration.md#trackautoheight-default-false) to set `track.autoHeight`
 
 #### hideEmpty (default `undefined`)
-> If the track automatically resizes, determines whether should it be hidden when there are no features
+> If the track automatically resizes, determines whether should it be hidden when there are no features. Can be:
 >
 > - `true` - the track will be hidden if there are no features in view
 > - `false` - the track will be displayed if there are no features in view 
@@ -44,7 +44,12 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 > If `true`, the track cannot be moved by the user. If `false`, a drag handle will appear next to the track's name, allowing the user to change its vertical position within the genome browser.
 
 #### legend (default `false`)
-> If `Genoverse.Track.Legend`, `Genoverse.Track.Legend.extend({ ... legend config ... })`, or a child class of `Genoverse.Track.Legend`, a legend will be added to the track, as defind by this value. If `true`, a `Genoverse.Track.Legend` will be added.
+> Determines whether a legend will be added to the track, and what class that legend will use. Can be:
+>
+> - `true` - A `Genoverse.Track.Legend`
+> - `false` - No legend
+> - An extension `Genoverse.Track.Legend`, i.e. `Genoverse.Track.Legend.extend({ ... legend config ... })`
+> - A child class of `Genoverse.Track.Legend`, e.g. `Genoverse.Track.Legend.MyLegendClass`
 
 ## Fetching data
 
