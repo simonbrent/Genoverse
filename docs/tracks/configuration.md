@@ -48,8 +48,17 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 >
 > - `true` - A `Genoverse.Track.Legend`
 > - `false` - No legend
-> - An extension `Genoverse.Track.Legend`, i.e. `Genoverse.Track.Legend.extend({ ... legend config ... })`
+> - An extension of `Genoverse.Track.Legend`, i.e. `Genoverse.Track.Legend.extend({ ... legend config ... })`
 > - A child class of `Genoverse.Track.Legend`, e.g. `Genoverse.Track.Legend.MyLegendClass`
+
+#### children (default `undefined`)
+> Determines whether a track will have child tracks, which are located in the same DOM element as their parent. Can be:
+>
+> - An extension of `Genoverse.Track`, i.e. `Genoverse.Track.extend({ ... config ... })`
+> - An array of extensions of `Genoverse.Track`
+>
+> Legend can be child tracks, but if they are provided as such, the `legend` property should not be set.
+> Note: Multiple levels of children (i.e. a child track with children) is not supported.
 
 ## Fetching data
 
