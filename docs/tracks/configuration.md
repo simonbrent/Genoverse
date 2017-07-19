@@ -58,6 +58,7 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 > - An array of extensions of `Genoverse.Track`
 >
 > Legend can be child tracks, but if they are provided as such, the `legend` property should not be set.
+> 
 > Note: Multiple levels of children (i.e. a child track with children) is not supported.
 
 ## Fetching data
