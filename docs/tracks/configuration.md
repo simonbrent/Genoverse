@@ -43,6 +43,9 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 #### unsortable (default `false`)
 > If `true`, the track cannot be moved by the user. If `false`, a drag handle will appear next to the track's name, allowing the user to change its vertical position within the genome browser.
 
+#### fixedOrder (default `false`)
+> If `true`, the track cannot be moved at all. Use for tracks which allways need to go at the top or bottom.
+
 #### legend (default `false`)
 > Determines whether a legend will be added to the track, and what class that legend will use. Can be:
 >
@@ -132,10 +135,26 @@ The following are properties for `Genoverse.Track` and its MVC components. These
 > 
 > - `true` - features are moved vertically
 > - `false` - features are not moved vertically, and can overlap
-> `"labels"` - features are not moved vertically, but if `track.labels === true`, `track.labels` is set to `"separate"`, so labels can be bumped while features are not
+> - `"labels"` - features are not moved vertically, but if `track.labels === true`, `track.labels` is set to `"separate"`, so labels can be bumped while features are not
 
 #### depth (default `undefined`)
 > If set to an integer, this is the maximum bumping depth for features in the track. Features which need to be moved vertically to beyond this depth (e.g. if depth = 2 and three features have the same start and end) will not be drawn.
+
+#### subFeatureJoinStyle (default `false`)
+> For features with a `subFeatures` property, determines what method is used to join these sub-features together. Can be:
+> 
+> - `"line"` - sub-features are joined by a horizontal line
+> - `"peak"` - sub-features are joined by a peak (diagonal line up, diagonal line down)
+> - `"curve"` - sub-features are joined by a quadratic curve
+> - `false` - sub-features are not joined
+
+In the case of `"peak"` and `"curve"`, the highest point of the join is mid-way between the end of one sub-feature and the start of the next. If the `feature.strand == -1`, the peak/curve will go down (a trough) instead of up.
+
+Sub-feature join lines are only drawn for pairs of sub-features where `subFeature1.end != subFeature2.start`.
+
+#### subFeatureJoinLineWidth (default `0.5`)
+
+The canvas `lineWidth` value used when drawing sub-feature join lines.
 
 #### threshold (default `Infinity`)
 > The integer size of region above which the track's features are not drawn. Synonymous with `[numerical key]: false` ([see here](/docs/tracks.md#multiple-models-and-views)), such that 
