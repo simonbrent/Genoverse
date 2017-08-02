@@ -4,7 +4,7 @@ Genoverse's tracks are responsible for obtaining data from a source (a URL, file
 
 Tracks are defined in the `Genoverse.Track` namespace. Each track has its own data set, stored in a [`Genoverse.Track.Model`](/docs/tracks/models.md), a method for displaying that data, stored in a [`Genoverse.Track.View`](/docs/tracks/views.md), and a [`Genoverse.Track.Controller`](/docs/tracks/controllers.md) to manage the creation of DOM elements, and user interactions with them. 
 
-Tracks and their MVC components are object-oriented, created using Dean Edward's [Base.js](http://dean.edwards.name/weblog/2006/03/base/) library. This library provides the `extend` function for inheritance, and the ability to call `this.base()` inside any inherited function in order to access it parent's method of the same name, for example:
+Tracks and their MVC components are using Dean Edward's [Base.js](http://dean.edwards.name/weblog/2006/03/base/) library, implementing OOP-style inheritance in javascript. This library provides the `extend` function for inheritance, and the ability to call `this.base()` inside any inherited function in order to access it parent's method of the same name, for example:
 
 ```javascript
 // Adapted from the example on http://dean.edwards.name/weblog/2006/03/base/
