@@ -2,6 +2,8 @@
 
 The following are methods that can be called on an instance of Genoverse or Genoverse.Track to perform actions required by UI changes external to the instance (i.e. from the website you have integrated Genoverse into).
 
+Genoverse does not use underscored field names, such as `_private` or `_privateFunction()`, to denote private fields. Generally, all variables on Genoverse or Genoverse.Track objects should be considered private in a sense that it is not safe to modify them directly, saying e.g `genoverse.start = 1`. Instead, call the following API functions.
+
 ## Genoverse API
 
 #### genoverse.addTracks(tracks [, after ])
